@@ -1,6 +1,7 @@
 ﻿using GT;
 using GT.Asset;
 using GT.UI;
+using GT.UI.Game.Screen;
 using UnityEngine;
 
 public class GameApplication : MonoBehaviour
@@ -32,8 +33,10 @@ public class GameApplication : MonoBehaviour
         {
             AddressableHelper.LoadSceneByKey(_startFromScene.ToString(), () =>
             {
-                Debug.Log("Woohoo game scene is loaded.");
-                uiScreenController.HideLoadingScreen();
+                uiScreenController.Create<MainHud>(hud =>
+                {
+                    uiScreenController.HideLoadingScreen();
+                });
             }, null);
         }
     }
