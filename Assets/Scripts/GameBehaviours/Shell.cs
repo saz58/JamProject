@@ -14,7 +14,7 @@ public enum ShellPoolKey
 
 public class Shell : MonoBehaviour, IPoolObject
 {
-    [SerializeField] private BaseShellItem _baseShellItem;
+    [SerializeField] private ShellPoolKey _shellPoolKey;
     [SerializeField] private Transform _shellRaycastOrigin;
     [SerializeField] private UnityAction _onHitAction;
     
@@ -73,7 +73,7 @@ public class Shell : MonoBehaviour, IPoolObject
 
     private void Despawn()
     {
-        _baseShellItem.ReturnToPool();
+        PoolManager.Return(_shellPoolKey.ToString(), this);
     }
 
     public void OnGetWithPool()
