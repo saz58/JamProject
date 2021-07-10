@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 
+[CreateAssetMenu(fileName = nameof(ConnectorsFactory), menuName = "ScriptableObjects/ConnectorsFactory")]
 public class ConnectorsFactory : ScriptableObject
 {
     [SerializeField] private ModuleConnector _prefab;

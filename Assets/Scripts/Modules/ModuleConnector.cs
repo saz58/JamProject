@@ -2,7 +2,12 @@
 
 public class ModuleConnector : MonoBehaviour
 {
-    public Vector2 Position { get; set; }
+    private Vector2 _position;
+    public Vector2 Position
+    {
+        get => _position;
+        set => transform.localPosition = _position = value;
+    }
 
     public bool IsActive
     {
