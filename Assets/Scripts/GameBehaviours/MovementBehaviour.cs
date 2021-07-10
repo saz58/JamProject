@@ -10,6 +10,12 @@ public class MovementBehaviour : MonoBehaviour
     [Range(0, float.PositiveInfinity)]
     [SerializeField] private float _angularVelocityLimit = 360f;
 
+    public void IncreaseLimit(float linearVelocityLimit, float angunalVelicityLimit)
+    {
+        _linearVelocityLimit += linearVelocityLimit;
+        _angularVelocityLimit += angunalVelicityLimit;
+    }
+
     public void AddLinearVelocity(Vector2 linearVelocity)
     {
         Vector2 newVelocity = _rigidbody.velocity + linearVelocity;

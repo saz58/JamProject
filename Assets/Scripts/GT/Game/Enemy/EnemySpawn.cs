@@ -83,7 +83,7 @@ namespace GT.Game.Enemy
                 return new ShieldModuleData(0);
             }
 
-            return new SpeedModuleData(0);
+            return new SpeedModuleData(0, 0.2f, 1f, 2, 5);
         }
 
         private void RandomizeArray(Vector2[] array)

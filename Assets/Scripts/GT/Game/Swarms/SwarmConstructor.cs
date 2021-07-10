@@ -57,7 +57,7 @@ namespace GT.Game.Swarms
                     ModuleType.Core => new CoreModuleData(0),
                     ModuleType.Attack => new AttackModuleData(0),
                     ModuleType.Shield => new ShieldModuleData(0),
-                    ModuleType.Speed => new SpeedModuleData(0),
+                    ModuleType.Speed => new SpeedModuleData(0, 0.2f, 1f, 2, 5),
                 };
             }
         }
