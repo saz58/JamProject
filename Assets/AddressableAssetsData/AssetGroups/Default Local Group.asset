@@ -41,6 +41,18 @@ MonoBehaviour:
     m_SerializedLabels: []
     m_MainAsset: {fileID: 0}
     m_TargetAsset: {fileID: 0}
+  - m_GUID: 6b38db59953bd4b4ea10ad7e12650564
+    m_Address: ModuleA
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 8e88f133f8b8f439a9caed09166d69c0
+    m_Address: ModuleC
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 5c7eb5ba643188b4b8c72bf4a28eb7a9, type: 2}
   m_SchemaSet:
