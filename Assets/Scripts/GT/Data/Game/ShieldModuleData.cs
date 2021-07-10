@@ -6,7 +6,7 @@ namespace GT.Data.Game
 {
     public class ShieldModuleData : ModuleData
     {
-        public override ModuleType Type => ModuleType.Attack;
+        public override ModuleType Type => ModuleType.Shield;
 
         public ShieldModuleData(int id) : base(id)
         {

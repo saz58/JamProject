@@ -5,7 +5,7 @@ namespace GT.Data.Game
 {
     public class CoreModuleData : ModuleData
     {
-        public override ModuleType Type => ModuleType.Attack;
+        public override ModuleType Type => ModuleType.Core;
 
         public CoreModuleData(int id) : base(id)
         {

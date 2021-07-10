@@ -7,7 +7,7 @@ namespace GT.Data.Game
     {
         public float SpeedIncrease { get; }
 
-        public override ModuleType Type => ModuleType.Attack;
+        public override ModuleType Type => ModuleType.Speed;
 
         public SpeedModuleData(int id) : base(id)
         {

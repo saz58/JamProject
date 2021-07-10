@@ -50,6 +50,11 @@ namespace GT.Game.Swarms
 
         private void CheckIfConnectorFree(Vector2 position)
         {
+            if (position == Vector2.zero)
+            {
+                return;
+            }
+
             foreach (var connector in _allConnectors)
             {
                 if (FloatComparer.Instance.Equals(connector.Key, position))
