@@ -19,7 +19,7 @@ namespace GT.Game.Swarms
 
         private void Awake()
         {
-            var module = _midulesFactory.CreateConnector(new CoreModuleData(200), Vector2.zero, _swarm.transform);
+            var module = _midulesFactory.CreateModule(new CoreModuleData(200), Vector2.zero, _swarm.transform);
             _swarm.AddModule(Vector2.zero, module);
         }
 
@@ -28,7 +28,7 @@ namespace GT.Game.Swarms
         {
             var connectorPosition = _toAdd == null || !_toAdd.IsActive ? GetConnectPosition() : _toAdd.Position;
 
-            var module = _midulesFactory.CreateConnector(GetRandomModuleData(), connectorPosition, _swarm.transform);
+            var module = _midulesFactory.CreateModule(GetRandomModuleData(), connectorPosition, _swarm.transform);
 
             _swarm.AddModule(connectorPosition, module);
 

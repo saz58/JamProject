@@ -17,7 +17,7 @@ namespace GT.Game.Modules
 
         [SerializeField] private ModulesPrefabs[] _prefabs;
 
-        public BaseModule CreateConnector(ModuleData data, Vector2 position, Transform parent)
+        public BaseModule CreateModule(ModuleData data, Vector2 position, Transform parent)
         {
             var module = Instantiate(GetModulePrefab(data.Type), parent);
             module.Position = position;
