@@ -20,8 +20,6 @@ namespace GT.Game.Swarms
 
         public Vector2 Position => transform.position;
 
-        public float Speed { get; private set; }
-
         public event Action<Vector2> OnTargetPositionChanged;
         public event Action OnFire;
 
@@ -46,9 +44,9 @@ namespace GT.Game.Swarms
             }
         }
 
-        public void IncreaseSpeed(float speedAdd)
+        public void IncreaseSpeed(float linearSpeed, float angularSpeed, float linearVelocityLimit, float angularVelocityLimit)
         {
-            Speed += speedAdd;
+            _baseControl.IncreaseSpeed(linearSpeed, angularSpeed, linearVelocityLimit, angularVelocityLimit);
         }
 
         public void SetCoreModule(CoreModule coreModule)

@@ -9,6 +9,7 @@ namespace GT.UI.Game.Screen
     public class MainHud : BaseScreen
     {
         [SerializeField] private ModulesList modulesList = default;
+        [SerializeField] private TMPro.TextMeshProUGUI scoreField = default;
         public void Init(List<ModuleData> data)
         {
             

@@ -13,6 +13,13 @@ namespace GT.Game.SwarmControls
         public event Action<Vector2> OnTargetPositionChanged;
         public event Action OnFire;
 
+        public void IncreaseSpeed(float linearSpeed, float angularSpeed, float linearVelocityLimit, float angularVelocityLimit)
+        {
+            _movementBehaviour.IncreaseLimit(linearVelocityLimit, angularVelocityLimit);
+            _linearSpeedCoef += linearSpeed;
+            _angularSpeedCoef += angularSpeed;
+        }
+
         protected virtual void MoveToDirection(float x, float y)
         {
             Vector2 linearVelocity = new Vector2(x, y) * Time.deltaTime * _linearSpeedCoef;

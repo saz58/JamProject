@@ -2,11 +2,23 @@
 {
     public class SpeedModuleStats : ModuleStats
     {
-        public float SpeedIncrease { get; }
+        public float LinearSpeedIncrease { get; }
+        public float AngularSpeedIncrease { get; }
+        public float LinearVelocityLimitIncrease { get; }
+        public float AngularVelocityLimitIncrease { get; }
 
-        public SpeedModuleStats(float hp, float speedIncrease) : base(hp)
+        public SpeedModuleStats(
+            float hp,
+            float linearSpeedIncrease,
+            float angularSpeedIncrease,
+            float linearVelocityIncrease,
+            float angularVelocityIncrease)
+            : base(hp)
         {
-            SpeedIncrease = speedIncrease;
+            LinearSpeedIncrease = linearSpeedIncrease;
+            AngularSpeedIncrease = angularSpeedIncrease;
+            LinearVelocityLimitIncrease = linearVelocityIncrease;
+            AngularVelocityLimitIncrease = angularVelocityIncrease;
         }
     }
 }
