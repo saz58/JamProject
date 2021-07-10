@@ -20,21 +20,15 @@ namespace GT.UI.Game.Item
         [SerializeField] private UIProgressBar progressBar = default;
 
         private Action<int> _onSelect;
-        private MockModuleData _data;
+        private ModuleData _data;
 
-
-        public void Init(MockModuleData data, Sprite moduleIcon, Action<int> selection)
+        public void Init(ModuleData data, Sprite moduleIcon, Action<int> selection)
         {
             _data = data;
             icon.sprite = moduleIcon;
             _onSelect = selection;
-            _data.OnHealthUpdate += OnUpdateHealth;
+            progressBar.UpdateProgress(_data.CurrentHealth / _data.MaxHealth);
             progressBar.UpdateProgress(1);
-        }
-
-        private void OnUpdateHealth(float currentHp)
-        {
-            progressBar.UpdateProgress(currentHp / _data.Health);
         }
 
         public void Select(bool isSelected)

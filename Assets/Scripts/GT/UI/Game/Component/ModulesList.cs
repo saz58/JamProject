@@ -34,7 +34,7 @@ namespace GT.UI.Game.Component
                 }));
         }
 
-        private void DestroyItem(MockModuleData data)
+        private void DestroyItem(ModuleData data)
         {
             _items.Remove(data.Id);
         }

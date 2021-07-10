@@ -1,4 +1,4 @@
-﻿namespace Modules
+﻿namespace GT.Game.Modules
 {
     public enum ModuleType
     {

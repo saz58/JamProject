@@ -1,6 +1,8 @@
+using GT.Game.Modules.Stats;
+using GT.Game.Swarms;
 using UnityEngine;
 
-namespace Modules
+namespace GT.Game.Modules
 {
     public class BaseModule : MonoBehaviour
     {

@@ -1,10 +1,10 @@
-﻿namespace Modules
+﻿namespace GT.Game.Modules.Stats
 {
     public class AttackModuleStats : ModuleStats
     {
         public float Damage { get; }
 
-        public AttackModuleStats(int hp, float damage) : base(hp)
+        public AttackModuleStats(float hp, float damage) : base(hp)
         {
             Damage = damage;
         }

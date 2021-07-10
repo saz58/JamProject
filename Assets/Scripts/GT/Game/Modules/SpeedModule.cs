@@ -1,4 +1,7 @@
-namespace Modules
+using GT.Game.Modules.Stats;
+using GT.Game.Swarms;
+
+namespace GT.Game.Modules
 {
     public class SpeedModule : BaseModule
     {
