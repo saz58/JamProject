@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7ce2c6baf4a4404f881ec85f77f0e78, type: 3}
   m_Name: SwarmFactory
   m_EditorClassIdentifier: 
-  _moduleFactory: {fileID: 0}
-  _prefab: {fileID: 0}
+  _moduleFactory: {fileID: 11400000, guid: 21d54099d7a06e547a218ff059d826ce, type: 2}
+  _prefab: {fileID: 4576518442313370250, guid: 80284303c42e901409d25c02df2c3604, type: 3}

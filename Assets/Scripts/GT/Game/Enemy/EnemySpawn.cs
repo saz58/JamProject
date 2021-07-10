@@ -25,7 +25,7 @@ namespace GT.Game.Enemy
 
         public Swarm Spawn(Vector2 playerPosition, EnemyConfiguration enemyConfiguration, int totalModulesCound)
         {
-            Vector2 enemyPosition = playerPosition + (Vector2)Random.onUnitSphere * _distanceFromPlayer;
+            Vector2 enemyPosition = playerPosition + Random.insideUnitCircle.normalized * _distanceFromPlayer;
 
             var swarm = _swarmFactory.CreateSwarm(enemyPosition);
 
@@ -36,25 +36,19 @@ namespace GT.Game.Enemy
 
         private void GenerateBlocks(Swarm swarm, EnemyConfiguration enemyConfiguration, int totalModulesCound)
         {
-            var blocksLeft = totalModulesCound;
+            var modulesLeft = totalModulesCound;
 
-            while (blocksLeft > 0)
+            while (modulesLeft > 0)
             {
                 var allFreeConnectors = swarm.FreeConnectors().ToArray();
-                var spawnChanse = (int)(enemyConfiguration.FullLevelChanse * blocksLeft);
-                int blocksOnLevel = 0;
-                if (spawnChanse <= 0 || spawnChanse > blocksLeft)
-                    blocksOnLevel = blocksLeft;
-                else if (spawnChanse > allFreeConnectors.Length)
-                    blocksOnLevel = allFreeConnectors.Length;
-                else
-                    blocksOnLevel = spawnChanse;
+                var spawnChanse = (int)(enemyConfiguration.FullLevelChanse * modulesLeft);
+                int modulesOnLevel = GetModulesOnLevel(modulesLeft, allFreeConnectors.Length, spawnChanse);
 
-                blocksLeft -= blocksOnLevel;
+                modulesLeft -= modulesOnLevel;
 
                 RandomizeArray(allFreeConnectors);
 
-                foreach (var connector in allFreeConnectors.Take(blocksOnLevel))
+                foreach (var connector in allFreeConnectors.Take(modulesOnLevel))
                 {
                     var moduleData = RandomizeModule(enemyConfiguration);
                     var module = _moduleFactory.CreateModule(moduleData, connector, swarm.transform);
@@ -62,6 +56,15 @@ namespace GT.Game.Enemy
                 }
             }
 
+            static int GetModulesOnLevel(int modulesLeft, int maxModules, int spawnChanse)
+            {
+                if (spawnChanse <= 0 || spawnChanse > modulesLeft)
+                    return modulesLeft;
+                else if (spawnChanse > maxModules)
+                    return maxModules;
+                else
+                    return spawnChanse;
+            }
         }
 
         private ModuleData RandomizeModule(EnemyConfiguration enemyConfiguration)

@@ -5,6 +5,7 @@ using GT.Game.Connectors;
 using GT.Game.Modules;
 using GT.Game.SwarmControls;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace GT.Game.Swarms
 {
@@ -13,8 +14,11 @@ namespace GT.Game.Swarms
         [SerializeField] private ConnectorsFactory _connectorsFactory;
         [SerializeField] private BaseControl _baseControl;
 
+        private CoreModule _coreModule;
         private Dictionary<Vector2, BaseModule> _allModules = new Dictionary<Vector2, BaseModule>(FloatComparer.Instance);
         private Dictionary<Vector2, ModuleConnector> _allConnectors = new Dictionary<Vector2, ModuleConnector>(FloatComparer.Instance);
+
+        public Vector2 Position => transform.position;
 
         public float Speed { get; private set; }
 
@@ -45,6 +49,19 @@ namespace GT.Game.Swarms
         public void IncreaseSpeed(float speedAdd)
         {
             Speed += speedAdd;
+        }
+
+        public void SetCoreModule(CoreModule coreModule)
+        {
+            if (_coreModule != null)
+            {
+                throw new InvalidOperationException($"Swarm already has core module!");
+            }
+
+            _coreModule = coreModule;
+            _coreModule.Position = Vector2.zero;
+            _allModules.Add(Vector2.zero, coreModule);
+            UpdateConnectors(Vector2.zero);
         }
 
         public void AddModule(Vector2 position, BaseModule module)

@@ -20,7 +20,7 @@ namespace GT.Game.Swarms
         private void Awake()
         {
             var module = _midulesFactory.CreateModule(new CoreModuleData(200), Vector2.zero, _swarm.transform);
-            _swarm.AddModule(Vector2.zero, module);
+            _swarm.SetCoreModule((CoreModule)module);
         }
 
         [EditorButton]

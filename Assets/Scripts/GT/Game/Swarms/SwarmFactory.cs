@@ -16,7 +16,8 @@ namespace GT.Game.Swarms
             swarm.transform.position = position;
 
             // TODO: get data from outside
-            _moduleFactory.CreateModule(new CoreModuleData(200), Vector2.zero, swarm.transform);
+            var coreModule = _moduleFactory.CreateModule(new CoreModuleData(200), Vector2.zero, swarm.transform);
+            swarm.SetCoreModule((CoreModule)coreModule);
 
             return swarm;
         }
