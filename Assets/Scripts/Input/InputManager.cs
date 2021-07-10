@@ -5,7 +5,7 @@ using UnityEngine;
 public class InputManager : Singleton<InputManager>
 {
     public event Action OnFireButtonPressed;
-    public event Action OnConstructButtonDown;
+    public event Action<bool> OnConstructButtonDown;
     public event Action<float> OnRotationAxisUpdate;
     public event Action<float, float> OnMovementAxisUpdate;
     public event Action<Vector3> OnWorldSpacePointerPositionUpdate;
@@ -14,6 +14,7 @@ public class InputManager : Singleton<InputManager>
     [SerializeField] private float _rotationDelta = 0.1f;
 
     private float _rotationAxis;
+    private bool _constructToggle = true;
 
     private enum InputNames 
     {
@@ -70,7 +71,8 @@ public class InputManager : Singleton<InputManager>
 
         if (Input.GetButtonDown(InputNames.ConstructModeButton.ToString()))
         {
-            OnConstructButtonDown?.Invoke();
+            OnConstructButtonDown?.Invoke(_constructToggle);
+            _constructToggle = !_constructToggle;
         }
     }
 }

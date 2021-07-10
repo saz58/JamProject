@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &4771263720157353203
+--- !u!1 &8641903209728290976
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,12 +8,12 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4771263720157353204}
-  - component: {fileID: 4771263720157353205}
-  - component: {fileID: 4771263720157353202}
-  - component: {fileID: 4771263720157352969}
-  - component: {fileID: 4771263720157353207}
-  - component: {fileID: 4771263720157353206}
+  - component: {fileID: 8641903209728290983}
+  - component: {fileID: 8641903209728290982}
+  - component: {fileID: 8641903209728290977}
+  - component: {fileID: 8641903209728290906}
+  - component: {fileID: 8641903209728290980}
+  - component: {fileID: 8641903209728290981}
   m_Layer: 0
   m_Name: Swarm
   m_TagString: Untagged
@@ -21,13 +21,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4771263720157353204
+--- !u!4 &8641903209728290983
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4771263720157353203}
+  m_GameObject: {fileID: 8641903209728290976}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.6320354, y: 1.4726714, z: -6.194858}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -35,43 +35,43 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4771263720157353205
+--- !u!114 &8641903209728290982
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4771263720157353203}
+  m_GameObject: {fileID: 8641903209728290976}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4ff55c3847f055a4aa41d3c29cfc4707, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _connectorsFactory: {fileID: 11400000, guid: e8014ae9a45f36c4889b661e7bd4c736, type: 2}
-  _baseControl: {fileID: 4771263720157352969}
---- !u!114 &4771263720157353202
+  _baseControl: {fileID: 8641903209728290906}
+--- !u!114 &8641903209728290977
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4771263720157353203}
+  m_GameObject: {fileID: 8641903209728290976}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 86d628ac98414fb4fbdeab7abdfff06b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _swarm: {fileID: 4771263720157353205}
+  _swarm: {fileID: 8641903209728290982}
   _midulesFactory: {fileID: 11400000, guid: 21d54099d7a06e547a218ff059d826ce, type: 2}
   _toDestroy: {fileID: 0}
   _toAdd: {fileID: 0}
---- !u!114 &4771263720157352969
+--- !u!114 &8641903209728290906
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4771263720157353203}
+  m_GameObject: {fileID: 8641903209728290976}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5ccd0254ad617594b932e0bdffc2ce67, type: 3}
@@ -79,31 +79,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _linearSpeedCoef: 3
   _angularSpeedCoef: 50
-  _movementBehaviour: {fileID: 4771263720157353207}
+  _movementBehaviour: {fileID: 8641903209728290980}
   _coordsTransformCamera: {fileID: 0}
---- !u!114 &4771263720157353207
+--- !u!114 &8641903209728290980
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4771263720157353203}
+  m_GameObject: {fileID: 8641903209728290976}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6cceabfd10f9ccc438712aa3653bc77b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rigidbody: {fileID: 4771263720157353206}
+  _rigidbody: {fileID: 8641903209728290981}
   _linearVelocityLimit: 20
   _angularVelocityLimit: 60
---- !u!50 &4771263720157353206
+--- !u!50 &8641903209728290981
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4771263720157353203}
+  m_GameObject: {fileID: 8641903209728290976}
   m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0

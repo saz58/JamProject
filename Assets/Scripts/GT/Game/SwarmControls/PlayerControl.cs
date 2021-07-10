@@ -45,9 +45,9 @@ namespace GT.Game.SwarmControls
             }
         }
 
-        private void ToggleConstructMode()
+        private void ToggleConstructMode(bool toggle)
         {
-            _isConsturtorMode = !_isConsturtorMode;
+            _isConsturtorMode = toggle;
         }
 
         private void Shoot()
