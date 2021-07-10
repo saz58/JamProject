@@ -7,6 +7,7 @@ namespace GT.Game.Modules
     public class AttackModule : BaseModule
     {
         [SerializeField] private AimBehaviour _aimBehaviour;
+        [SerializeField] private FireBehaviour _fireBehaviour;
 
         public new AttackModuleStats Stats => (AttackModuleStats)base.Stats;
 
@@ -29,6 +30,7 @@ namespace GT.Game.Modules
 
         private void Fire()
         {
+            _fireBehaviour.Fire();
         }
     }
 }

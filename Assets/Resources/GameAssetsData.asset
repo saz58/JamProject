@@ -15,3 +15,5 @@ MonoBehaviour:
   _assets:
   - key: BackItem
     count: 20
+  - key: PlayerShellItem
+    count: 200
