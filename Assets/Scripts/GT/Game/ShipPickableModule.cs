@@ -4,7 +4,6 @@ using UnityEngine;
 
 namespace GT.Game
 {
-    // todo: merge if need already created.
     public class ShipPickableModule : MonoBehaviour
     {
         [SerializeField] private Transform _transform = default;

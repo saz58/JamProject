@@ -40,7 +40,6 @@ namespace GT.Data.Game
             _shipModules.Add(pickableModule);
             var data = new AttackModuleData(_shipModulesData.Count);
             _shipModulesData.Add(data.Id, data);
-            Debug.Log("Added new Module: " + data.Id);
 
             return data;
         }
