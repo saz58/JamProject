@@ -10,17 +10,17 @@ namespace GT.Data.Game
         static DataHandler()
         {
             _shipModules = new List<ShipPickableModule>();
-            _shipModulesData = new Dictionary<int, MockModuleData>();
+            _shipModulesData = new Dictionary<int, ModuleData>();
         }
 
         private static List<ShipPickableModule> _shipModules;
-        private static Dictionary<int, MockModuleData> _shipModulesData;
+        private static Dictionary<int, ModuleData> _shipModulesData;
         public static Action<ShipPickableModule> OnModulePicked;
 
-        public static MockModuleData AddInGameShipModule(ShipPickableModule pickableModule)
+        public static ModuleData AddInGameShipModule(ShipPickableModule pickableModule)
         {
             _shipModules.Add(pickableModule);
-            var data = new MockModuleData(_shipModulesData.Count);
+            var data = new AttackModuleData(_shipModulesData.Count);
             _shipModulesData.Add(data.Id, data);
             Debug.Log("Added new Module: " + data.Id);
 
@@ -46,8 +46,8 @@ namespace GT.Data.Game
         public static void ModuleReceiveDamage(int moduleId, float damage)
         {
             // todo: handle destroy here ?
-            if (_shipModulesData.TryGetValue(moduleId, out var data))
-                data.ReceiveDamage(damage);
+            //if (_shipModulesData.TryGetValue(moduleId, out var data))
+            //    data.ReceiveDamage(damage);
         }
     }
 }

@@ -12,8 +12,8 @@ namespace GT.Game
 
         public Vector2 Position => new Vector2(_transform.position.x, _transform.position.y);
 
-        private MockModuleData _data;
-        public MockModuleData Data => _data;
+        private ModuleData _data;
+        public ModuleData Data => _data;
         public Sprite Icon => spriteRenderer.sprite;
 
         private void Awake()

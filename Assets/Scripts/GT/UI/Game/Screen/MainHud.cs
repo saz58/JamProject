@@ -9,7 +9,7 @@ namespace GT.UI.Game.Screen
     public class MainHud : BaseScreen
     {
         [SerializeField] private ModulesList modulesList = default;
-        public void Init(List<MockModuleData> data)
+        public void Init(List<ModuleData> data)
         {
             
         }
