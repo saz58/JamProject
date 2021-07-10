@@ -4,6 +4,7 @@ namespace GT.Asset
     {
         BootScene,
         GameScene,
-        Demo
+        Demo,
+        Battle,
     }
 }
