@@ -1,4 +1,5 @@
 using GT.Data;
+using GT.Data.Game;
 using UnityEngine;
 
 namespace GT.Test
@@ -16,7 +17,7 @@ namespace GT.Test
         [EditorButton]
         private void TestA()
         {
-            
+            DataHandler.ModuleReceiveDamage(2, 2);
         }
     }
 }

@@ -18,6 +18,14 @@ namespace GT.Data.Game
 
         public static Action<ShipPickableModule> OnModulePicked;
 
+        // [RuntimeInitializeOnLoadMethod]
+        // static void InitOnLoad()
+        // {
+        //     _shipModules.Clear();
+        //     _shipModulesData.Clear();
+        //     OnModulePicked = null;
+        // }
+        
         public static MockModuleData AddInGameShipModule(ShipPickableModule pickableModule)
         {
             _shipModules.Add(pickableModule);
@@ -41,8 +49,14 @@ namespace GT.Data.Game
                     return true;
                 }
             }
-
             return false;
+        }
+
+        public static void ModuleReceiveDamage(int moduleId, float damage)
+        {
+            // todo: handle destroy here ?
+            if (_shipModulesData.TryGetValue(moduleId, out var data))
+                data.ReceiveDamage(damage);
         }
     }
 }
