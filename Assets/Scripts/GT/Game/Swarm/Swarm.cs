@@ -25,6 +25,21 @@ namespace GT.Game.Swarms
         {
             _baseControl.OnTargetPositionChanged += pos => OnTargetPositionChanged?.Invoke(pos);
             _baseControl.OnFire += () => OnFire?.Invoke();
+            
+            InputManager.Instance.OnConstructButtonDown += ToggleConstructMode;
+            
+        }
+        private void OnDestroy()
+        {
+            InputManager.Instance.OnConstructButtonDown -= ToggleConstructMode;
+        }
+
+        private void ToggleConstructMode(bool toggle)
+        {
+            foreach (var connector in _allConnectors)
+            {
+                connector.Value.Highlight(toggle);
+            }
         }
 
         public void IncreaseSpeed(float speedAdd)

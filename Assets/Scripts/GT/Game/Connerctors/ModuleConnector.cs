@@ -4,6 +4,9 @@ namespace GT.Game.Connectors
 {
     public class ModuleConnector : MonoBehaviour
     {
+        [SerializeField] private SpriteRenderer spriteRenderer = default;
+        
+        
         private Vector2 _position;
         public Vector2 Position
         {
@@ -15,6 +18,16 @@ namespace GT.Game.Connectors
         {
             get => gameObject.activeSelf;
             set => gameObject.SetActive(value);
+        }
+
+        public void Highlight(bool toggle)
+        {
+            spriteRenderer.enabled = toggle;
+        }
+
+        private void OnMouseUp()
+        {
+            Debug.Log("AAAAA");
         }
     }
 }
