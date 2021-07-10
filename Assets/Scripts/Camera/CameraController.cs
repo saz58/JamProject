@@ -1,8 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
+using GT.UI;
 using Scene;
+using UnityEngine.Rendering.Universal;
 
 public class CameraController : MonoBehaviour
 {
@@ -39,5 +39,13 @@ public class CameraController : MonoBehaviour
             return false;
         return true;
     }
+    
+    public void RegisterOverlayCamera()
+    {
+        var cameraData = _camera.GetUniversalAdditionalCameraData();
+        cameraData.cameraStack.Add(UIScreenController.Instance.UICamera);
 
+        if (UIScreenController.Instance.UICamera.gameObject.activeSelf == false)
+            UIScreenController.Instance.UICamera.gameObject.SetActive(true);
+    }
 }

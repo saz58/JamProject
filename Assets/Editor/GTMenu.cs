@@ -36,7 +36,7 @@ public static class GTMenu
     public static void OpenWheelRoomScene()
     {
         if (EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo())
-            EditorSceneManager.OpenScene($"Assets/Scenes/{SceneAddress.GameScene}.unity");
+            EditorSceneManager.OpenScene($"Assets/Scenes/{SceneAddress.Battle}.unity");
     }
 
     [MenuItem("File/Open Project Directory", false, 0)]

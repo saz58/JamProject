@@ -1,7 +1,4 @@
-using System;
-using Scene;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 namespace Scene
 {
@@ -15,6 +12,7 @@ namespace Scene
 
         private void Start()
         {
+            _cameraController.RegisterOverlayCamera();
             Debug.Log("[BattleScene] Start");
 
             if (!CacheLoader.CacheReady) {
