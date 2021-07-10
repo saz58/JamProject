@@ -17,6 +17,24 @@ namespace GT.Data.Game
         private static Dictionary<int, ModuleData> _shipModulesData;
         public static Action<ShipPickableModule> OnModulePicked;
 
+
+        private static Action _onModuleDataApply;
+        public static void RegisterSelectedData(int dataId, Action onApply)
+        {
+            _onModuleDataApply = onApply;
+            if (_shipModulesData.TryGetValue(dataId, out var data))
+                SelectedData = data;
+        }
+        public static void ApplySelectedData()
+        {
+            _onModuleDataApply += () => { _shipModulesData.Remove(SelectedData.Id); };
+            _onModuleDataApply?.Invoke();
+            SelectedData = null;
+            _onModuleDataApply = null;
+        }
+
+        public static ModuleData SelectedData;
+
         public static ModuleData AddInGameShipModule(ShipPickableModule pickableModule)
         {
             _shipModules.Add(pickableModule);

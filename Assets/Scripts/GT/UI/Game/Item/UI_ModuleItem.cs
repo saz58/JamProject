@@ -21,6 +21,7 @@ namespace GT.UI.Game.Item
 
         private Action<int> _onSelect;
         private ModuleData _data;
+        public ModuleData Data => _data;
 
         public void Init(ModuleData data, Sprite moduleIcon, Action<int> selection)
         {

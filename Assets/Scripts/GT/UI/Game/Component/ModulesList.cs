@@ -5,8 +5,6 @@ using GT.Data.Game;
 using GT.Game;
 using GT.UI.Game.Item;
 using UnityEngine;
-using UnityEngine.AddressableAssets;
-using UnityEngine.ResourceManagement.ResourceLocations;
 
 namespace GT.UI.Game.Component
 {
@@ -25,7 +23,6 @@ namespace GT.UI.Game.Component
 
         public void AddPickedItem(ShipPickableModule module)
         {
-            Debug.Log("Add picked item.");
             StartCoroutine(AddressableHelper.InstantiateAsset<UI_ModuleItem>(this, nameof(UI_ModuleItem),
                 spawnContainer, item =>
                 {
@@ -34,9 +31,10 @@ namespace GT.UI.Game.Component
                 }));
         }
 
-        private void DestroyItem(ModuleData data)
+        private void DestroyItem(int id)
         {
-            _items.Remove(data.Id);
+            Destroy(_items[id].gameObject);
+            _items.Remove(id);
         }
 
 
@@ -45,6 +43,10 @@ namespace GT.UI.Game.Component
             if (_items.TryGetValue(idSelected, out var itemSelect))
             {
                 itemSelect.Select(true);
+                DataHandler.RegisterSelectedData(idSelected, () =>
+                {
+                    DestroyItem(idSelected);
+                });
             }
 
             if (_items.TryGetValue(_currentSelected, out var itemDeselect) && idSelected != _currentSelected)

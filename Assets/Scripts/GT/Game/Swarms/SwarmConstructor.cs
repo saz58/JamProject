@@ -23,6 +23,12 @@ namespace GT.Game.Swarms
             _swarm.SetCoreModule((CoreModule)module);
         }
 
+        public void AddModule(ModuleData data, Vector2 pos)
+        {
+            var module = _midulesFactory.CreateModule(data, pos, _swarm.transform);
+            _swarm.AddModule(pos, module);
+        }
+
         [EditorButton]
         public void TestAdd()
         {
