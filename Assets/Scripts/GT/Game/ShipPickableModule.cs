@@ -10,7 +10,7 @@ namespace GT.Game
         [SerializeField] private Transform _transform = default;
         [SerializeField] private SpriteRenderer spriteRenderer =default; 
 
-        public Vector2 Position => new Vector2(_transform.position.x, _transform.position.z);
+        public Vector2 Position => new Vector2(_transform.position.x, _transform.position.y);
 
         private MockModuleData _data;
         public MockModuleData Data => _data;

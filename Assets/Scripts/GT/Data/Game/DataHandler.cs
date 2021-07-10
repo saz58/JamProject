@@ -15,17 +15,8 @@ namespace GT.Data.Game
 
         private static List<ShipPickableModule> _shipModules;
         private static Dictionary<int, MockModuleData> _shipModulesData;
-
         public static Action<ShipPickableModule> OnModulePicked;
 
-        // [RuntimeInitializeOnLoadMethod]
-        // static void InitOnLoad()
-        // {
-        //     _shipModules.Clear();
-        //     _shipModulesData.Clear();
-        //     OnModulePicked = null;
-        // }
-        
         public static MockModuleData AddInGameShipModule(ShipPickableModule pickableModule)
         {
             _shipModules.Add(pickableModule);
