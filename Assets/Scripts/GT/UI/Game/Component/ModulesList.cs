@@ -20,7 +20,7 @@ namespace GT.UI.Game.Component
 
         private void Awake()
         {
-            DataHandler.OnModulePicked += AddPickedItem;
+            DataHandler.OnModulePicked = AddPickedItem;
         }
 
         public void AddPickedItem(ShipPickableModule module)

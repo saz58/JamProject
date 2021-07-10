@@ -1,6 +1,6 @@
 using System;
+using GT.CustomComponent.ProgressBar;
 using GT.Data.Game;
-using GT.Game;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -14,10 +14,10 @@ namespace GT.UI.Game.Item
         [SerializeField] private Color32 hlActive = default;
         [SerializeField] private Color32 bgEnter = default;
         [SerializeField] private Color32 bgExit = default;
-
         [SerializeField] private Image icon = default;
         [SerializeField] private Image highlight = default;
         [SerializeField] private Image bg = default;
+        [SerializeField] private UIProgressBar progressBar = default;
 
         private Action<int> _onSelect;
         private MockModuleData _data;
@@ -28,6 +28,13 @@ namespace GT.UI.Game.Item
             _data = data;
             icon.sprite = moduleIcon;
             _onSelect = selection;
+            _data.OnHealthUpdate += OnUpdateHealth;
+            progressBar.UpdateProgress(1);
+        }
+
+        private void OnUpdateHealth(float currentHp)
+        {
+            progressBar.UpdateProgress(currentHp / _data.Health);
         }
 
         public void Select(bool isSelected)

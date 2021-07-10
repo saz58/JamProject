@@ -15,7 +15,6 @@ namespace GT.Data.Game
 
         private static List<ShipPickableModule> _shipModules;
         private static Dictionary<int, MockModuleData> _shipModulesData;
-
         public static Action<ShipPickableModule> OnModulePicked;
 
         public static MockModuleData AddInGameShipModule(ShipPickableModule pickableModule)
@@ -41,8 +40,14 @@ namespace GT.Data.Game
                     return true;
                 }
             }
-
             return false;
+        }
+
+        public static void ModuleReceiveDamage(int moduleId, float damage)
+        {
+            // todo: handle destroy here ?
+            if (_shipModulesData.TryGetValue(moduleId, out var data))
+                data.ReceiveDamage(damage);
         }
     }
 }
