@@ -6,24 +6,29 @@ namespace GT.Game.Modules
 {
     public class AttackModule : BaseModule
     {
+        [SerializeField] private AimBehaviour _aimBehaviour;
+
         public new AttackModuleStats Stats => (AttackModuleStats)base.Stats;
 
         protected override void AddEffectToSwarm(Swarm swarm)
         {
-            swarm.OnMouseMove += AimTo;
-            swarm.OnMouseClick += Fire;
+            swarm.OnTargetPositionChanged += AimTo;
+            swarm.OnFire += Fire;
         }
 
         protected override void RemoveEffectFromSwarm(Swarm swarm)
         {
-            swarm.OnMouseMove -= AimTo;
-            swarm.OnMouseClick -= Fire;
+            swarm.OnTargetPositionChanged -= AimTo;
+            swarm.OnFire -= Fire;
         }
 
         private void AimTo(Vector2 vector2)
-        { }
+        {
+            _aimBehaviour.AimTo(vector2);
+        }
 
         private void Fire()
-        { }
+        {
+        }
     }
 }

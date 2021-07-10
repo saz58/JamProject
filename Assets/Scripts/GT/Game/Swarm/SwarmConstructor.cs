@@ -26,13 +26,19 @@ namespace GT.Game.Swarms
         [EditorButton]
         public void TestAdd()
         {
-            var connectorPosition = _toAdd == null || !_toAdd.IsActive ? _swarm.FreeConnectors().First() : _toAdd.Position;
+            var connectorPosition = _toAdd == null || !_toAdd.IsActive ? GetConnectPosition() : _toAdd.Position;
 
             var module = _midulesFactory.CreateConnector(GetRandomModuleData(), connectorPosition, _swarm.transform);
 
             _swarm.AddModule(connectorPosition, module);
 
-            ModuleData GetRandomModuleData()
+            Vector2 GetConnectPosition()
+            {
+                var allConnectors = _swarm.FreeConnectors().ToArray();
+                return allConnectors[Random.Range(0, allConnectors.Length)];
+            }
+
+            static ModuleData GetRandomModuleData()
             {
                 var allTypes = Enum.GetValues(typeof(ModuleType))
                 .Cast<ModuleType>()

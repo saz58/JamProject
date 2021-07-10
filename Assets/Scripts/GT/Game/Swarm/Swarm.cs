@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using GT.Game.Connectors;
 using GT.Game.Modules;
+using GT.Game.SwarmControls;
 using UnityEngine;
 
 namespace GT.Game.Swarms
@@ -10,14 +11,21 @@ namespace GT.Game.Swarms
     public class Swarm : MonoBehaviour
     {
         [SerializeField] private ConnectorsFactory _connectorsFactory;
+        [SerializeField] private BaseControl _baseControl;
 
         private Dictionary<Vector2, BaseModule> _allModules = new Dictionary<Vector2, BaseModule>(FloatComparer.Instance);
         private Dictionary<Vector2, ModuleConnector> _allConnectors = new Dictionary<Vector2, ModuleConnector>(FloatComparer.Instance);
 
         public float Speed { get; private set; }
 
-        public event Action<Vector2> OnMouseMove;
-        public event Action OnMouseClick;
+        public event Action<Vector2> OnTargetPositionChanged;
+        public event Action OnFire;
+
+        private void Awake()
+        {
+            _baseControl.OnTargetPositionChanged += pos => OnTargetPositionChanged?.Invoke(pos);
+            _baseControl.OnFire += () => OnFire?.Invoke();
+        }
 
         public void IncreaseSpeed(float speedAdd)
         {
