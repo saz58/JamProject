@@ -13,7 +13,5 @@ MonoBehaviour:
   m_Name: GameAssetsData
   m_EditorClassIdentifier: 
   _assets:
-  - key: ModuleC
+  - key: BackItem
     count: 20
-  - key: ModuleA
-    count: 100

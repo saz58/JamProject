@@ -8,7 +8,8 @@ namespace Scene
     public class BattleScene : BaseScene
     {
         public static SceneId SceneId = SceneId.Battle;
-        [SerializeField] private GameObject _cameraPrefab;
+        [SerializeField] private CameraController _cameraController;
+        [SerializeField] private BackgroundController _backgroundController;
 
         private bool _init;
 
@@ -32,6 +33,9 @@ namespace Scene
             AddressableHandler.Instance.OnAllLoaded -= SetupScene;
             _init = true;
             CacheLoader.Setup();
+
+            _cameraController.Setup(this);
+            _backgroundController.Setup(_cameraController);
         }
 
         
