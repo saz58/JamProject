@@ -35,6 +35,24 @@ namespace GT.Asset
             // after fix: https://forum.unity.com/threads/cleardependencycacheasync-appears-to-do-nothing.934089/#post-6864323
         }
 
+        public static IEnumerator InstantiateAsset<T>(IResourceReferenceHolder referenceHolder, string key,
+            Transform parent, Action<T> created)
+        {
+            AsyncOperationHandle<GameObject> handle = Addressables.InstantiateAsync(key, parent);
+            yield return handle;
+
+            if (handle.Result != null)
+            {
+                var asset = handle.Result.GetComponent<T>();
+                referenceHolder.DestroyResource = () => { Addressables.Release(handle); };
+                created?.Invoke(asset);
+            }
+            else
+            {
+                Addressables.Release(handle);
+            }
+        }
+
         public static IEnumerator LoadListResources<T>(IResourceReferenceHolder referenceHolder, AssetPrefix prefix,
             int count, List<T> list, Action listPacked, Action onFail = null)
         {
