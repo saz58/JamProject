@@ -14,7 +14,7 @@ namespace GT.Data.Game
 
         public override ModuleStats ToStats()
         {
-            return new ModuleStats(CurrentHealth);
+            return new ModuleStats(CurrentHealth, MaxHealth);
         }
     }
 }

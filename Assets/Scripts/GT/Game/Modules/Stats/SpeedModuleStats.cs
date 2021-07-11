@@ -9,11 +9,12 @@
 
         public SpeedModuleStats(
             float hp,
+            float maxHP,
             float linearSpeedIncrease,
             float angularSpeedIncrease,
             float linearVelocityIncrease,
             float angularVelocityIncrease)
-            : base(hp)
+            : base(hp, maxHP)
         {
             LinearSpeedIncrease = linearSpeedIncrease;
             AngularSpeedIncrease = angularSpeedIncrease;

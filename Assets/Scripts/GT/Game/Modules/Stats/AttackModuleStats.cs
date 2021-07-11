@@ -4,7 +4,7 @@
     {
         public float Damage { get; }
 
-        public AttackModuleStats(float hp, float damage) : base(hp)
+        public AttackModuleStats(float hp, float maxHP, float damage) : base(hp, maxHP)
         {
             Damage = damage;
         }

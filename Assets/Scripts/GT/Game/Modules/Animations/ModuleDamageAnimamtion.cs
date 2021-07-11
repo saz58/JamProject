@@ -1,13 +1,16 @@
 using UnityEngine;
 
-public class ModuleDamageAnimamtion : MonoBehaviour
+namespace GT.Game.Modules.Animations
 {
-    [SerializeField] private Animation _animation;
-    [SerializeField] private string _animationName;
-
-    public void PlayDamage()
+    public class ModuleDamageAnimamtion : MonoBehaviour
     {
-        var anim = _animation.GetClip(_animationName);
-        _animation.Play(anim.name);
+        [SerializeField] private Animation _animation;
+        [SerializeField] private string _animationName;
+
+        public void PlayDamage()
+        {
+            var anim = _animation.GetClip(_animationName);
+            _animation.Play(anim.name);
+        }
     }
 }

@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _destroyVFX: {fileID: 0}
   _damageAnimation: {fileID: 301606858354333868}
+  _hpDisplay: {fileID: 3599789688353705848}
 --- !u!1001 &6975257993542397427
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -109,5 +110,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 81dbbc941a32b2a418ba887a09c3ddaa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3599789688353705848 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5852460247488373387, guid: f153d1a841fb2cf4993eb4ffb5d2ae3a, type: 3}
+  m_PrefabInstance: {fileID: 6975257993542397427}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6163747243845825959}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: acae29e51e6d15c4d8a4a2bfa812948c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

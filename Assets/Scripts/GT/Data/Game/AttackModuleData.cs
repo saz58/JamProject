@@ -15,7 +15,7 @@ namespace GT.Data.Game
 
         public override ModuleStats ToStats()
         {
-            return new AttackModuleStats(CurrentHealth, Damage);
+            return new AttackModuleStats(CurrentHealth, MaxHealth, Damage);
         }
     }
 }
