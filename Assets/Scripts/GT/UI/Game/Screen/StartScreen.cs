@@ -44,17 +44,7 @@ namespace GT.UI.Game.Screen
             startBtn.gameObject.SetActive(true);
             startBtn.transform.CycleScale(this, 2, Vector3.one * 1.1F, 0.05F);
 
-            if (PlayerPrefs.GetInt(TutorialDisplayed, 0) > 0)
-            {
-                startBtn.onClick.AddListener(() =>
-                {
-                    startBtnAction?.Invoke();
-                    StartCoroutine(startBtn.transform.Scale(Vector3.zero, 0.1F));
-                    StartCoroutine(splashImg.Fade(0, 0.4F));
-                });
-            }
-            else
-                startBtn.onClick.AddListener(DisplayTutorial);
+            startBtn.onClick.AddListener(DisplayTutorial);
 
             void DisplayTutorial()
             {
