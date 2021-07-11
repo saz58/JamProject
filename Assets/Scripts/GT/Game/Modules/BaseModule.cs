@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using GT.Game.Modules.Animations;
 using GT.Game.Modules.Stats;
 using GT.Game.Swarms;
 using Pool;
@@ -20,6 +21,8 @@ namespace GT.Game.Modules
         };
 
         [SerializeField] private GameObject _destroyVFX;
+        [SerializeField] private ModuleDamageAnimamtion _damageAnimation;
+        [SerializeField] private ModuleHPDisplay _hpDisplay;
 
         private Action<BaseModule> _onDestroy;
 
@@ -36,6 +39,7 @@ namespace GT.Game.Modules
         public void Initialize(ModuleStats stats, Action<BaseModule> onDestroy)
         {
             Stats = stats;
+            _hpDisplay.ShowHp(stats.Hp, stats.MaxHP);
             _onDestroy = onDestroy;
             Stats.OnHealthChanged += OnHealthChanged;
         }
@@ -67,11 +71,14 @@ namespace GT.Game.Modules
 
         private void OnHealthChanged(float hp)
         {
+            _hpDisplay.ShowHp(hp, Stats.MaxHP);
             if (hp <= 0)
             {
+                _swarm.RemoveModule(this);
                 Destroy();
             }
 
+            _damageAnimation.PlayDamage();
         }
     }
 }

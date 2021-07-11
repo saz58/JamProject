@@ -28,7 +28,7 @@ namespace GT.Data.Game
 
         public override ModuleStats ToStats()
         {
-            return new SpeedModuleStats(CurrentHealth, LinearSpeedIncrease, AngularSpeedIncrease, LinearVelocityIncrease, AngularVelocityIncrease);
+            return new SpeedModuleStats(CurrentHealth, MaxHealth, LinearSpeedIncrease, AngularSpeedIncrease, LinearVelocityIncrease, AngularVelocityIncrease);
         }
     }
 }

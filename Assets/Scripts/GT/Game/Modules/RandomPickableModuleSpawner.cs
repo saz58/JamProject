@@ -19,7 +19,7 @@ namespace GT.Game.Modules
         /// <param name="centerPos">last enemy position</param>
         /// <param name="count"></param>
         /// <param name="radius"></param>
-        public static void SpawnGroupModules(Vector2 centerPos, int count = 0, float radius = 3)
+        public static void SpawnGroupModules(Vector2 centerPos, int count = 0, int radius = 3)
         {
             if (count <= 0)
                 count = Random.Range(1, 3);
@@ -27,7 +27,7 @@ namespace GT.Game.Modules
             for (int i = 0; i < count; i++)
             {
                 var m = SpawnPickableModule(centerPos);
-                m.AnimateDisplay(GetTargetPosition(centerPos, count + 1));
+                m.AnimateDisplay(GetTargetPosition(centerPos, radius));
             }
         }
         
