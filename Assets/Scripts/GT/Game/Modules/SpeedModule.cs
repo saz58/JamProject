@@ -7,11 +7,6 @@ namespace GT.Game.Modules
     {
         public new SpeedModuleStats Stats => (SpeedModuleStats)base.Stats;
 
-        public void Initialize(SpeedModuleStats moduleStats)
-        {
-            base.Initialize(moduleStats);
-        }
-
         protected override void AddEffectToSwarm(Swarm swarm)
         {
             if (swarm)

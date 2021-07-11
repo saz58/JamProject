@@ -1,8 +1,5 @@
-using GT.Game.Modules.Stats;
+using GT.Game.Modules;
 using Pool;
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -44,11 +41,11 @@ public class Shell : MonoBehaviour, IPoolObject
         
         if(hitResult.collider != null)
         {
-            var stats = hitResult.collider.GetComponent<ModuleStats>();
+            var module = hitResult.collider.GetComponent<BaseModule>();
             
-            if(stats != null)
+            if(module != null)
             {
-                stats.ReceiveDamage(_damage);
+                module.ReceiveDamage(_damage);
             }
 
             OnHit();

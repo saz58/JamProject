@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c432c45a57236194a9eb794e5e3ff616, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _destroyVFX: {fileID: 0}
 --- !u!1001 &6975257993542397427
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19,9 +20,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2421851901999188765, guid: f153d1a841fb2cf4993eb4ffb5d2ae3a, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 3839071594265008212, guid: f153d1a841fb2cf4993eb4ffb5d2ae3a, type: 3}
       propertyPath: m_Name
       value: ShieldModule
+      objectReference: {fileID: 0}
+    - target: {fileID: 3839071594265008212, guid: f153d1a841fb2cf4993eb4ffb5d2ae3a, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5101949208167883263, guid: f153d1a841fb2cf4993eb4ffb5d2ae3a, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6936271468764702265, guid: f153d1a841fb2cf4993eb4ffb5d2ae3a, type: 3}
       propertyPath: m_RootOrder

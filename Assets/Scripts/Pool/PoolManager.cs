@@ -95,26 +95,26 @@ namespace Pool
         public static event Action<string> OnReturn;
         public static event Action<string, int> OnRegister;
 
-        public static T Get<T>(string id) where T : Component, IPoolObject
+        public static T Get<T>(string id) where T : Component
         {
             OnGet?.Invoke(id);
             return Instance.GetPool(id).Get<T>();
         }
 
-        public static T GetHidden<T>(string id) where T : Component, IPoolObject
+        public static T GetHidden<T>(string id) where T : Component
         {
             return Instance.GetPool(id).GetHidden<T>();
         }
 
-        public static T Get<T>(IPoolData data) where T : Component, IPoolObject
+        public static T Get<T>(IPoolData data) where T : Component
         {
             return Instance.GetPool(data).Get<T>();
         }
 
-        public static void Return<T>(string id, T typeObject) where T : Component, IPoolObject
+        public static void Return<T>(string id, T typeObject) where T : Component
         {
             OnReturn?.Invoke(id);
-            Instance.GetPool(id).Return<T>(typeObject.transform);
+            Instance.GetPool(id).Return(typeObject.transform);
         }
 
         public static GameObject Get(string id)

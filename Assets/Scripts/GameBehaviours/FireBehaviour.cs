@@ -1,6 +1,4 @@
 using Pool;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class FireBehaviour : MonoBehaviour
@@ -27,7 +25,7 @@ public class FireBehaviour : MonoBehaviour
 
     public void Fire()
     {
-        if ( Time.time -_fireTime < _coolDown)
+        if (Time.time - _fireTime < _coolDown)
         {
             return;
         }

@@ -42,25 +42,14 @@ namespace Pool
             return tr;
         }
 
-        public void Return<T>(Transform t) where T : Component, IPoolObject
-        {
-            if (t == null)
-                throw new NullReferenceException("Returned object can't be null");
-            t.SetParent(_manager.transform, false);
-            var g = t.GetComponent<T>();
-            g.OnReturnToPool();
-            t.gameObject.SetActive(false);
-            _available.Enqueue(t);
-        }
-
-        public T Get<T>() where T : Component, IPoolObject
+        public T Get<T>() where T : Component
         {
             var g = GetHidden<T>();
             g.gameObject.SetActive(true);
             return g;
         }
 
-        public T GetHidden<T>() where T : Component, IPoolObject
+        public T GetHidden<T>() where T : Component
         {
             if (_available.Count == 0)
             {
@@ -70,8 +59,14 @@ namespace Pool
 
             var t = _available.Dequeue();
             t.SetParent(null, true);
+
             var g = t.GetComponent<T>();
-            g.OnGetWithPool();
+            
+            if (g is IPoolObject poolObject)
+            {
+                poolObject.OnGetWithPool();
+            }
+
             return g;
         }
 
@@ -95,6 +90,13 @@ namespace Pool
             if (t == null)
                 throw new NullReferenceException("Returned object can't be null");
             t.transform.SetParent(_manager.transform, false);
+            
+            var g = t.GetComponent<IPoolObject>();
+            if (g != null)
+            {
+                g.OnReturnToPool();
+            }
+
             t.gameObject.SetActive(false);
             _available.Enqueue(t);
         }

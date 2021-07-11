@@ -1,3 +1,5 @@
+using System;
+using System.Collections;
 using GT.Game.Modules.Stats;
 using GT.Game.Swarms;
 using Pool;
@@ -5,7 +7,7 @@ using UnityEngine;
 
 namespace GT.Game.Modules
 {
-    public class BaseModule : MonoBehaviour, IPoolObject
+    public class BaseModule : MonoBehaviour
     {
         public static readonly Vector2[] ConnectDirrections =
         {
@@ -17,6 +19,10 @@ namespace GT.Game.Modules
             new Vector2(0f, -1f),
         };
 
+        [SerializeField] private GameObject _destroyVFX;
+
+        private Action<BaseModule> _onDestroy;
+
         private Swarm _swarm;
         public ModuleStats Stats { get; private set; }
 
@@ -27,9 +33,11 @@ namespace GT.Game.Modules
             set => transform.localPosition = _position = value;
         }
 
-        public void Initialize(ModuleStats stats)
+        public void Initialize(ModuleStats stats, Action<BaseModule> onDestroy)
         {
             Stats = stats;
+            _onDestroy = onDestroy;
+            Stats.OnHealthChanged += OnHealthChanged;
         }
 
         public void ConnectTo(Swarm swarm)
@@ -41,13 +49,14 @@ namespace GT.Game.Modules
 
         public virtual void Destroy()
         {
-            Destroy(gameObject);
-        }
-
-        private void OnDestroy()
-        {
+            _onDestroy?.Invoke(this);
             RemoveEffectFromSwarm(_swarm);
             OnDestroyInner();
+        }
+
+        public void ReceiveDamage(float damage)
+        {
+            Stats.ReceiveDamage(damage);
         }
 
         protected virtual void AddEffectToSwarm(Swarm swarm) { }
@@ -56,12 +65,13 @@ namespace GT.Game.Modules
 
         protected virtual void OnDestroyInner() { }
 
-        public void OnGetWithPool()
+        private void OnHealthChanged(float hp)
         {
-        }
+            if (hp <= 0)
+            {
+                Destroy();
+            }
 
-        public void OnReturnToPool()
-        {
         }
     }
 }
