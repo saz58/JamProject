@@ -30,11 +30,23 @@ public class FireBehaviour : MonoBehaviour
             return;
         }
 
+        var c = GetComponent<Collider2D>();
+        var r = c.attachedRigidbody;
+
         _fireTime = Time.time;
         
         var shell = PoolManager.Get<Shell>(_shellPoolKey.ToString());
         shell.transform.position = _shellSpawnPoint.position;
         shell.transform.rotation = _shellSpawnPoint.rotation;
+
+        var directionVector = (_shellSpawnPoint.rotation * Vector3.up).normalized;
+        var additionalSpeed = Vector3.Dot(directionVector, r.velocity);
+
+        if (additionalSpeed < 0)
+        {
+            additionalSpeed = 0;
+        }
+
         shell.transform.Rotate(Vector3.forward, Random.Range(_inverceDispersionAngle, _dispersionAngle));
 
         float additioalSpeed = 0f;

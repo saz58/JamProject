@@ -1,3 +1,4 @@
+using GT.Game;
 using GT.Game.Enemy;
 using GT.Game.Swarms;
 using GT.UI;
@@ -41,6 +42,9 @@ namespace Scene
         private void SetupScene()
         {
             Debug.Log("[BattleScene] SetupScene");
+
+            ScoreManager.Reset();
+            
             AddressableHandler.Instance.OnAllLoaded -= SetupScene;
             _init = true;
             CacheLoader.Setup();
@@ -58,12 +62,5 @@ namespace Scene
         {
             Player = null;
         }
-
-        // TODO: do not remove this
-        //public void Update()
-        //{
-        //    if (!_init || !Application.isFocused)
-        //        return;
-        //}
     }
 }

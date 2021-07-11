@@ -28,7 +28,10 @@ namespace GT.Game.Swarms
             swarm.Setup(control);
             swarm.SubscribeControls();
             
+            swarm.OnDestroied += DestroyPlayer;
+
             RandomPickableModuleSpawner.SpawnGroupModules(new Vector2(swarm.transform.position.x + 4,swarm.transform.position.y), 5, 4);
+
             return swarm;
         }
 
@@ -52,7 +55,29 @@ namespace GT.Game.Swarms
 
             swarm.Setup(control);
 
+            swarm.OnDestroied += DestroyPlayer;
+
             return swarm;
+        }
+
+        public static void DestroyPlayer(Swarm swarm)
+        {
+            RemoveComponent<MovementBehaviour>();
+            RemoveComponent<PlayerControl>();
+            RemoveComponent<ModulePicker>();
+            RemoveComponent<EnemyMovementBehaviour>();
+            RemoveComponent<EnemyAttackBehaviour>();
+            RemoveComponent<EnemyControl>();
+
+            void RemoveComponent<T>()
+                where T : Component
+            {
+                var componnt = swarm.GetComponent<T>();
+                if (componnt != null)
+                {
+                    Object.Destroy(componnt);
+                }
+            }
         }
     }
 }

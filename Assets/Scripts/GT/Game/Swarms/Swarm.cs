@@ -19,6 +19,8 @@ namespace GT.Game.Swarms
 
         public Vector2 Position => transform.position;
 
+        public event Action<Swarm> OnDestroied;
+
         public event Action<Vector2> OnTargetPositionChanged;
         public event Action OnFire;
 
@@ -27,7 +29,6 @@ namespace GT.Game.Swarms
             _baseControl = control;
             _baseControl.OnTargetPositionChanged += pos => OnTargetPositionChanged?.Invoke(pos);
             _baseControl.OnFire += () => OnFire?.Invoke();
-
         }
 
         public void SubscribeControls()
@@ -168,6 +169,8 @@ namespace GT.Game.Swarms
             {
                 module.Destroy();
             }
+
+            OnDestroied?.Invoke(this);
         }
 
         // TODO: not effective implementation. could be time consuming

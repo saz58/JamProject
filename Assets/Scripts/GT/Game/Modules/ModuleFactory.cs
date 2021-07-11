@@ -27,7 +27,26 @@ namespace GT.Game.Modules
 
         private static Action<BaseModule> GetModuleReturnToPoolAction(ModuleData data, SwarmFaction faction)
         {
-            return m => PoolManager.Return(GetPoolId(data, faction), m);
+            Action<BaseModule> returnAction = m => PoolManager.Return(GetPoolId(data, faction), m);
+            
+            if (faction == SwarmFaction.Wasp)
+            {
+                returnAction += m => AddScores(m);
+            }
+
+            return returnAction;
+        }
+
+        private static void AddScores(BaseModule baseModule)
+        {
+            if (baseModule is CoreModule)
+            {
+                ScoreManager.AddScore(GameConsts.ScoreForSwarm);
+            }
+            else
+            {
+                ScoreManager.AddScore(GameConsts.ScoreForModule);
+            }
         }
 
         private static string GetPoolId(ModuleData data, SwarmFaction faction)
