@@ -24,6 +24,8 @@ namespace GT.Game.Enemy
         {
             _playerController = playerController;
             _cameraController = cameraController;
+            AllEnemy.Clear();
+            CancelInvoke();
             InvokeRepeating(nameof(Spawn), _startDelay, _minSpawnInterval);
         }
 
