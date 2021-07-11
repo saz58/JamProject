@@ -79,6 +79,8 @@ namespace GT.Game.Swarms
                     Object.Destroy(componnt);
                 }
             }
+
+            EnemySpawner.EnemyDestroyed(swarm);
         }
     }
 }

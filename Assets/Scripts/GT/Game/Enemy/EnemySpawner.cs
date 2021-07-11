@@ -13,7 +13,7 @@ namespace GT.Game.Enemy
         [SerializeField] private float _minSpawnInterval = 2f;
         [SerializeField] private float _startDelay = 5f;
 
-        public static List<Swarm> _allEnemy = new List<Swarm>(200);
+        public static List<Swarm> AllEnemy = new List<Swarm>(200);
 
         private PlayerController _playerController;
         private CameraController _cameraController;
@@ -27,14 +27,19 @@ namespace GT.Game.Enemy
 
         private void Spawn()
         {
-            if(_allEnemy.Count > _maxAmmount)
+            if(AllEnemy.Count > _maxAmmount)
                 return;
 
             var spawnPosition = GetPosition();
             var type = EnumExts.RandomEnumValue<EnemyType>();
             var enemy = RandomSwarmGenerator.SpawnEnemy(type, spawnPosition, GetConfiguration(type), GetModulCount());
             CorrectPositionOnScreen(enemy);
-            _allEnemy.Add(enemy);
+            AllEnemy.Add(enemy);
+        }
+
+        public static void EnemyDestroyed(Swarm swarm)
+        {
+            AllEnemy.Remove(swarm);
         }
 
         private Vector2 GetPosition()
