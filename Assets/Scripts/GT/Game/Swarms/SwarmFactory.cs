@@ -27,7 +27,8 @@ namespace GT.Game.Swarms
 
             swarm.Setup(control);
             swarm.SubscribeControls();
-
+            
+            RandomPickableModuleSpawner.SpawnGroupModules(new Vector2(swarm.transform.position.x + 4,swarm.transform.position.y), 5, 4);
             return swarm;
         }
 
