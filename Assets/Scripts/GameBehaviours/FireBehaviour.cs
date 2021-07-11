@@ -38,13 +38,13 @@ public class FireBehaviour : MonoBehaviour
         shell.transform.Rotate(Vector3.forward, Random.Range(_inverceDispersionAngle, _dispersionAngle));
 
         float additioalSpeed = 0f;
-        var angleeToShipVelocity = Vector3.Angle(shipVelocity.normalized, shell.transform.forward);
-         
+        var angleeToShipVelocity = Vector3.Angle(shipVelocity.normalized, shell.transform.up);
+
         if (angleeToShipVelocity < 90)
         {
             additioalSpeed = Mathf.Cos(angleeToShipVelocity * Mathf.Deg2Rad) * shipVelocity.magnitude;
-            Debug.Log($"[FireBehaviour] angleeToShipVelocity = {angleeToShipVelocity}; shipVelocity = {shipVelocity}; shipVelocity.magnitude = {shipVelocity.magnitude}; additioalSpeed = {additioalSpeed}");
-        }    
+           
+        }
 
         shell.Shoot(_speed + additioalSpeed, _lifeTime, _damage, _shellRaycasLayerMask.value);
     }
