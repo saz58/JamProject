@@ -165,7 +165,7 @@ namespace GT.Game.Swarms
             }
         }
 
-        private void DestroySwarm()
+        public void DestroySwarm()
         {
             foreach (var connector in _allConnectors.Values)
             {

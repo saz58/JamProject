@@ -15,6 +15,7 @@ namespace GT.Game.Enemy
         [SerializeField] private float _startDelay = 5f;
 
         public static List<Swarm> AllEnemy = new List<Swarm>(200);
+        private static List<Swarm> EnemyToDestroy = new List<Swarm>(200);
 
         private PlayerController _playerController;
         private CameraController _cameraController;
@@ -28,7 +29,9 @@ namespace GT.Game.Enemy
 
         private void Spawn()
         {
-            if(AllEnemy.Count > _maxAmmount)
+            CheckTooFar();
+
+            if (AllEnemy.Count > _maxAmmount)
                 return;
 
             var spawnPosition = GetPosition();
@@ -37,6 +40,26 @@ namespace GT.Game.Enemy
             enemy.OnDestroied += SpawnItemsOnDestroy;
             CorrectPositionOnScreen(enemy);
             AllEnemy.Add(enemy);
+        }
+
+        private void CheckTooFar()
+        {
+            EnemyToDestroy.Clear();
+            foreach (var enemy in AllEnemy)
+            {
+                var dist = Vector3.Distance(_cameraController.Camera.transform.position, enemy.Center());
+                var cameraArround = Mathf.Max(_cameraController.Bound.size.x, _cameraController.Bound.size.y);
+                if(dist > cameraArround * 7)
+                {
+                    EnemyToDestroy.Add(enemy);
+                }
+            }
+
+            foreach (var enemy in EnemyToDestroy)
+            {
+                EnemyDestroyed(enemy);
+                enemy.DestroySwarm();
+            }
         }
 
         public static void EnemyDestroyed(Swarm swarm)

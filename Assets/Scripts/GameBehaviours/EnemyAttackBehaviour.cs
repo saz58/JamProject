@@ -37,7 +37,7 @@ public class EnemyAttackBehaviour : MonoBehaviour
         LookAt?.Invoke(_player.Center());
 
         var activation = _settings.ActivationDistance * UnityEngine.Random.Range(0, 1 + _settings.ActivationDistance);
-        if (distanceToPlayer - playerMaxExtend - enemyMaxExtend < activation && distanceToPlayer - playerMaxExtend - enemyMaxExtend > 1)
+        if (distanceToPlayer - playerMaxExtend - enemyMaxExtend < activation && distanceToPlayer - playerMaxExtend - enemyMaxExtend > 2)
         {
             var moveDirection = _player.Center() - transform.position;
             moveDirection.Normalize();
@@ -46,7 +46,7 @@ public class EnemyAttackBehaviour : MonoBehaviour
 
         var attack = _settings.AttackDistance * UnityEngine.Random.Range(0, 1 + _settings.AttackDistanceRandomRange);
 
-        if (distanceToPlayer - playerMaxExtend - enemyMaxExtend < attack) // visible for camera 
+        if (distanceToPlayer - playerMaxExtend - enemyMaxExtend < attack) 
         {
             Shoot?.Invoke();
         }
