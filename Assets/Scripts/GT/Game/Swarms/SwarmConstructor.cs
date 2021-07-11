@@ -18,7 +18,7 @@ namespace GT.Game.Swarms
 
         public void AddModule(ModuleData data, Vector2 pos)
         {
-            var module = ModuleFactory.CreateModule(data, pos, _swarm.transform);
+            var module = ModuleFactory.CreateModule(data, SwarmFaction.Bee, pos, _swarm.transform);
             _swarm.AddModule(pos, module);
         }
 
@@ -27,7 +27,7 @@ namespace GT.Game.Swarms
         {
             var connectorPosition = _toAdd == null || !_toAdd.IsActive ? GetConnectPosition() : _toAdd.Position;
 
-            var module = ModuleFactory.CreateModule(GetRandomModuleData(), connectorPosition, _swarm.transform);
+            var module = ModuleFactory.CreateModule(GetRandomModuleData(), SwarmFaction.Bee, connectorPosition, _swarm.transform);
 
             _swarm.AddModule(connectorPosition, module);
 

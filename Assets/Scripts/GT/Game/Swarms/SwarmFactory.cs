@@ -13,7 +13,7 @@ namespace GT.Game.Swarms
             var swarm = PoolManager.Get<Swarm>(nameof(Swarm));
             swarm.transform.position = position;
 
-            var module = ModuleFactory.CreateModule(new CoreModuleData(200), Vector2.zero, swarm.transform);
+            var module = ModuleFactory.CreateModule(new CoreModuleData(200), SwarmFaction.Bee, Vector2.zero, swarm.transform);
             swarm.SetCoreModule((CoreModule)module);
 
             var movement = swarm.gameObject.AddComponent<MovementBehaviour>();
@@ -32,7 +32,7 @@ namespace GT.Game.Swarms
             var swarm = PoolManager.Get<Swarm>(nameof(Swarm));
             swarm.transform.position = position;
 
-            var module = ModuleFactory.CreateModule(new CoreModuleData(200), Vector2.zero, swarm.transform);
+            var module = ModuleFactory.CreateModule(new CoreModuleData(200), SwarmFaction.Wasp, Vector2.zero, swarm.transform);
             swarm.SetCoreModule((CoreModule)module);
 
             var movement = swarm.gameObject.AddComponent<EnemyMovementBehaviour>();

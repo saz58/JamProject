@@ -44,12 +44,5 @@ namespace Scene
             _enemySpawner.Setup(playerController);
             _backgroundController.Setup(_cameraController);
         }
-
-        //public void Update()
-        //{
-        //    if (!_init || !Application.isFocused)
-        //        return;
-        //}
-
     }
 }

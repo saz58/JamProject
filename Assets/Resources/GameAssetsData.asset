@@ -17,15 +17,23 @@ MonoBehaviour:
     count: 20
   - key: Swarm
     count: 50
-  - key: AttackModule
+  - key: BeeAttackModule
     count: 50
-  - key: CoreModule
+  - key: BeeCoreModule
     count: 50
-  - key: ShieldModule
+  - key: BeeShieldModule
     count: 50
-  - key: SpeedModule
+  - key: BeeSpeedModule
     count: 50
   - key: ModuleConnector
     count: 50
   - key: PlayerShellItem
+    count: 200
+  - key: WaspAttackModule
+    count: 200
+  - key: WaspCoreModule
+    count: 200
+  - key: WaspShieldModule
+    count: 200
+  - key: WaspSpeedModule
     count: 200

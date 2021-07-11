@@ -54,7 +54,7 @@ namespace GT.Game.Enemy
                 foreach (var connector in allFreeConnectors.Take(modulesOnLevel))
                 {
                     var moduleData = RandomizeModule(enemyConfiguration);
-                    var module = ModuleFactory.CreateModule(moduleData, connector, swarm.transform);
+                    var module = ModuleFactory.CreateModule(moduleData, SwarmFaction.Wasp, connector, swarm.transform);
                     swarm.AddModule(connector, module);
                 }
             }
