@@ -64,6 +64,7 @@ namespace GT.Game.Modules
 
         public virtual void Destroy()
         {
+            VfxSpawner.AddVfx(transform.position);
             _onDestroy?.Invoke(this);
             RemoveEffectFromSwarm(_swarm);
             OnDestroyInner();
