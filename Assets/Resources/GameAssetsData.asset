@@ -29,6 +29,8 @@ MonoBehaviour:
     count: 50
   - key: PlayerShellItem
     count: 200
+  - key: EnemyShellItem
+    count: 200
   - key: WaspAttackModule
     count: 200
   - key: WaspCoreModule
@@ -39,5 +41,7 @@ MonoBehaviour:
     count: 200
   - key: PickableModule
     count: 24
+  - key: VfxExplosive
+    count: 50
   - key: EnemyShellItem
-    count: 500
+    count: 200

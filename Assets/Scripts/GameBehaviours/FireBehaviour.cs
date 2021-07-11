@@ -1,3 +1,4 @@
+using GT.Audio;
 using Pool;
 using UnityEngine;
 
@@ -6,6 +7,7 @@ public class FireBehaviour : MonoBehaviour
     [SerializeField] private Transform _shellSpawnPoint;
     [SerializeField] private float _dispersionAngle;
     [SerializeField] private float _coolDown = 0.5f;
+    [SerializeField] private AudioClip _shotClip;
 
     [Header("Shell params")]
     [SerializeField] private float _speed;
@@ -64,5 +66,6 @@ public class FireBehaviour : MonoBehaviour
         }
 
         shell.Shoot(_speed + additioalSpeed, _lifeTime, _damage, _shellRaycasLayerMask.value);
+        GameApplication.Instance.gameAudio.PlaySfxOnce(SoundFx.BlasterShoot);
     }
 }

@@ -187,6 +187,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 2421851901999188765, guid: f153d1a841fb2cf4993eb4ffb5d2ae3a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3839071594265008212, guid: f153d1a841fb2cf4993eb4ffb5d2ae3a, type: 3}
       propertyPath: m_Name
       value: AttackModule

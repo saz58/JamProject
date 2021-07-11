@@ -4,6 +4,9 @@ namespace GT.Audio
     {
         TestA,
         BackgroundMusic,
-        explosionNear
+        explosionNear,
+        ModuleDestroy,
+        BlasterShoot,
+        BlasterHit
     }
 }

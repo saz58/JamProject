@@ -1,9 +1,8 @@
 using System;
-using System.Collections;
+using GT.Audio;
 using GT.Game.Modules.Animations;
 using GT.Game.Modules.Stats;
 using GT.Game.Swarms;
-using Pool;
 using UnityEngine;
 
 namespace GT.Game.Modules
@@ -64,14 +63,17 @@ namespace GT.Game.Modules
 
         public virtual void Destroy()
         {
+            VfxSpawner.AddVfx(transform.position);
             _onDestroy?.Invoke(this);
             RemoveEffectFromSwarm(_swarm);
             OnDestroyInner();
+            GameApplication.Instance.gameAudio.PlaySfxOnce(SoundFx.ModuleDestroy);
         }
 
         public void ReceiveDamage(float damage)
         {
             Stats.ReceiveDamage(damage);
+            GameApplication.Instance.gameAudio.PlaySfx(Audio.SoundFx.BlasterHit);
         }
 
         protected virtual void AddEffectToSwarm(Swarm swarm) { }
