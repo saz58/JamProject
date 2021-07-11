@@ -18,8 +18,7 @@ namespace TestV
         [EditorButton]
         private void TestA()
         {
-            var module = RandomPickableModuleSpawner.CreatePickableModule(Vector2.zero);
-            module.gameObject.SetActive(true);
+            RandomPickableModuleSpawner.SpawnGroupModules(Vector2.zero);
 
         }
     }
