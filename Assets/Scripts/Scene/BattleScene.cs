@@ -1,7 +1,7 @@
-using GT.Data.Game;
 using GT.Game.Enemy;
-using GT.Game.Modules;
 using GT.Game.Swarms;
+using GT.UI;
+using GT.UI.Game.Screen;
 using UnityEngine;
 
 namespace Scene
@@ -22,13 +22,19 @@ namespace Scene
             _cameraController.RegisterOverlayCamera();
             Debug.Log("[BattleScene] Start");
 
-            if (!CacheLoader.CacheReady) {
-                AddressableHandler.Instance.OnAllLoaded += SetupScene;
-                AddressableHandler.Instance.GetAsync(CacheLoader.AssetsData.ItemKeys);
-            }
-            else
+            UIScreenController.Instance.Create<StartScreen>(screen => { screen.Init(StartGame); });
+
+            void StartGame()
             {
-                SetupScene();
+                if (!CacheLoader.CacheReady)
+                {
+                    AddressableHandler.Instance.OnAllLoaded += SetupScene;
+                    AddressableHandler.Instance.GetAsync(CacheLoader.AssetsData.ItemKeys);
+                }
+                else
+                {
+                    SetupScene();
+                }
             }
         }
 
@@ -59,6 +65,5 @@ namespace Scene
         //    if (!_init || !Application.isFocused)
         //        return;
         //}
-
     }
 }
