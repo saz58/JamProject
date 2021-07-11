@@ -149,6 +149,12 @@ MonoBehaviour:
     m_SerializedLabels: []
     m_MainAsset: {fileID: 0}
     m_TargetAsset: {fileID: 0}
+  - m_GUID: 7971687ca6b62483991cae074fb8e66b
+    m_Address: Battle
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 5c7eb5ba643188b4b8c72bf4a28eb7a9, type: 2}
   m_SchemaSet:
