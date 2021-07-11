@@ -29,6 +29,10 @@ namespace GT.Game.Swarms
             _baseControl.OnTargetPositionChanged += pos => OnTargetPositionChanged?.Invoke(pos);
             _baseControl.OnFire += () => OnFire?.Invoke();
 
+        }
+
+        public void SubscribeControls()
+        {
             InputManager.Instance.OnConstructButtonDown += ToggleConstructMode;
         }
 
@@ -70,6 +74,7 @@ namespace GT.Game.Swarms
             module.Position = position;
             module.ConnectTo(this);
             UpdateConnectors(position);
+            ToggleConstructMode(false);
         }
 
         public void RemoveModule(Vector2 position)

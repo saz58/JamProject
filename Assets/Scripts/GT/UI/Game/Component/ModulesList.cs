@@ -10,7 +10,7 @@ namespace GT.UI.Game.Component
 {
     public class ModulesList : MonoBehaviour, IResourceReferenceHolder
     {
-        [SerializeField] private RectTransform spawnContainer = default;
+        [SerializeField] private RectTransform content = default;
         private Dictionary<int, UI_ModuleItem> _items = new Dictionary<int, UI_ModuleItem>();
         private int _currentSelected = 0;
 
@@ -21,10 +21,10 @@ namespace GT.UI.Game.Component
             DataHandler.OnModulePicked = AddPickedItem;
         }
 
-        public void AddPickedItem(ShipPickableModule module)
+        public void AddPickedItem(PickableModule module)
         {
-            StartCoroutine(AddressableHelper.InstantiateAsset<UI_ModuleItem>(this, nameof(UI_ModuleItem),
-                spawnContainer, item =>
+            StartCoroutine(AddressableHelper.InstantiateAsset<UI_ModuleItem>(this, nameof(UI_ModuleItem), parent:
+                content, item =>
                 {
                     item.Init(module.Data, module.Icon, Selection);
                     _items.Add(module.Data.Id, item);

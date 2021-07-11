@@ -38,7 +38,7 @@ namespace GT.Asset
         public static IEnumerator InstantiateAsset<T>(IResourceReferenceHolder referenceHolder, string key,
             Transform parent, Action<T> created)
         {
-            AsyncOperationHandle<GameObject> handle = Addressables.InstantiateAsync(key, parent);
+            AsyncOperationHandle<GameObject> handle = Addressables.InstantiateAsync(key, parent:parent);
             yield return handle;
 
             if (handle.Result != null)

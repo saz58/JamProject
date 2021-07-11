@@ -37,3 +37,5 @@ MonoBehaviour:
     count: 200
   - key: WaspSpeedModule
     count: 200
+  - key: PickableModule
+    count: 24

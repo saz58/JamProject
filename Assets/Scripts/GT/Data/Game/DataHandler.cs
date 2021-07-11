@@ -1,6 +1,9 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using CustomExtension;
 using GT.Game;
+using GT.Game.Modules;
 using UnityEngine;
 
 namespace GT.Data.Game
@@ -9,62 +12,73 @@ namespace GT.Data.Game
     {
         static DataHandler()
         {
-            _shipModules = new List<ShipPickableModule>();
-            _shipModulesData = new Dictionary<int, ModuleData>();
+            _pickableModules = new List<PickableModule>();
+            _modulesData = new Dictionary<int, ModuleData>();
         }
 
-        private static List<ShipPickableModule> _shipModules;
-        private static Dictionary<int, ModuleData> _shipModulesData;
-        public static Action<ShipPickableModule> OnModulePicked;
-
-
+        private static List<PickableModule> _pickableModules;
+        private static Dictionary<int, ModuleData> _modulesData;
+        public static Action<PickableModule> OnModulePicked;
+        private static List<ModuleType> _types = new List<ModuleType>();
+        public static ModuleData SelectedData;
         private static Action _onModuleDataApply;
+
         public static void RegisterSelectedData(int dataId, Action onApply)
         {
             _onModuleDataApply = onApply;
-            if (_shipModulesData.TryGetValue(dataId, out var data))
+            if (_modulesData.TryGetValue(dataId, out var data))
                 SelectedData = data;
         }
+
         public static void ApplySelectedData()
         {
-            _onModuleDataApply += () => { _shipModulesData.Remove(SelectedData.Id); };
+            _onModuleDataApply += () => { _modulesData.Remove(SelectedData.Id); };
             _onModuleDataApply?.Invoke();
             SelectedData = null;
             _onModuleDataApply = null;
+
+            InputManager.Instance.constructToggle = true;
         }
 
-        public static ModuleData SelectedData;
-
-        public static ModuleData AddInGameShipModule(ShipPickableModule pickableModule)
+        public static ModuleData AddInGameModule(PickableModule pickableModule)
         {
-            _shipModules.Add(pickableModule);
-            var data = new AttackModuleData(_shipModulesData.Count);
-            _shipModulesData.Add(data.Id, data);
-
+            _pickableModules.Add(pickableModule);
+            var data = GetModuleData();
+            _modulesData.Add(data.Id, data);
             return data;
-        }
-
-        public static bool CheckModulesPosition(Vector2 pos)
-        {
-            for (int i = 0; i < _shipModules.Count; i++)
+            
+            ModuleData GetModuleData()
             {
-                var module = _shipModules[i];
+                _types = EnumExts.GetCastValues<ModuleType>().ToList();
+                _types.Remove(0); // remove core;
+                
+                switch (_types.PickRandom())
+                {
+                    case ModuleType.Attack:
+                        return new AttackModuleData(_modulesData.Count);
+                    case ModuleType.Shield:
+                        return new ShieldModuleData(_modulesData.Count);
+                    case ModuleType.Speed:
+                        return new SpeedModuleData(_modulesData.Count, 0.2f, 1f, 2, 5);
+                }
+                return new SpeedModuleData(_modulesData.Count, 0.2f, 1f, 2, 5);
+            }
+        }
+        
+
+        public static void CheckModulesPosition(Vector2 pos)
+        {
+            for (int i = 0; i < _pickableModules.Count; i++)
+            {
+                var module = _pickableModules[i];
                 if (Vector2.Distance(pos, module.Position) < Constants.ModulePickDistance)
                 {
                     module.Pick();
-                    _shipModules.RemoveAt(i);
+                    _pickableModules.RemoveAt(i);
                     OnModulePicked?.Invoke(module);
-                    return true;
+                    break;
                 }
             }
-            return false;
-        }
-
-        public static void ModuleReceiveDamage(int moduleId, float damage)
-        {
-            // todo: handle destroy here ?
-            //if (_shipModulesData.TryGetValue(moduleId, out var data))
-            //    data.ReceiveDamage(damage);
         }
     }
 }

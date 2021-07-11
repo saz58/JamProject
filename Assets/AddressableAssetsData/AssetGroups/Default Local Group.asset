@@ -127,6 +127,8 @@ MonoBehaviour:
     m_TargetAsset: {fileID: 0}
   - m_GUID: 3b51030d7623fe6469667222b50f4d90
     m_Address: WaspSpeedModule
+  - m_GUID: b6928ee92db1b4e45b4d693f726e9bb0
+    m_Address: PickableModule
     m_ReadOnly: 0
     m_SerializedLabels: []
     m_MainAsset: {fileID: 0}

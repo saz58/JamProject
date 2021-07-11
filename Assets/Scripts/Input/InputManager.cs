@@ -14,7 +14,7 @@ public class InputManager : Singleton<InputManager>
     [SerializeField] private float _rotationDelta = 0.1f;
 
     private float _rotationAxis;
-    private bool _constructToggle = true;
+    public bool constructToggle = true;
 
     private enum InputNames 
     {
@@ -71,8 +71,8 @@ public class InputManager : Singleton<InputManager>
 
         if (Input.GetButtonDown(InputNames.ConstructModeButton.ToString()))
         {
-            OnConstructButtonDown?.Invoke(_constructToggle);
-            _constructToggle = !_constructToggle;
+            OnConstructButtonDown?.Invoke(constructToggle);
+            constructToggle = !constructToggle;
         }
     }
 }

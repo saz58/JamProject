@@ -35,7 +35,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: -3.133728}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &7335310669856517936
 MonoBehaviour:
@@ -49,8 +49,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_HorizontalFit: 0
-  m_VerticalFit: 1
+  m_HorizontalFit: 1
+  m_VerticalFit: 0
 --- !u!114 &3923857690358369537
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -214,7 +214,6 @@ GameObject:
   - component: {fileID: 2204192709683588972}
   - component: {fileID: 7880539467541407820}
   - component: {fileID: 3406551672812205422}
-  - component: {fileID: 1086024044948633772}
   m_Layer: 5
   m_Name: ModulesScrollViewHirizontal
   m_TagString: Untagged
@@ -240,7 +239,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: -20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &4800134697889530863
 MonoBehaviour:
@@ -254,7 +253,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02bd5bdcf120421591af37d1051cca0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnContainer: {fileID: 6627688560364545450}
+  content: {fileID: 6627688560364545450}
 --- !u!222 &2204192709683588972
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -276,7 +275,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.55662304, g: 0.9056604, b: 0.24350302, a: 0.46666667}
+  m_Color: {r: 0.55662304, g: 0.9056604, b: 0.24350302, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -310,9 +309,9 @@ MonoBehaviour:
   m_Vertical: 0
   m_MovementType: 2
   m_Elasticity: 0.1
-  m_Inertia: 1
-  m_DecelerationRate: 0.5
-  m_ScrollSensitivity: 50
+  m_Inertia: 0
+  m_DecelerationRate: 1
+  m_ScrollSensitivity: 40
   m_Viewport: {fileID: 6515799093415155310}
   m_HorizontalScrollbar: {fileID: 0}
   m_VerticalScrollbar: {fileID: 0}
@@ -323,16 +322,3 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &1086024044948633772
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8688816511360534704}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02bd5bdcf120421591af37d1051cca0a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spawnContainer: {fileID: 0}

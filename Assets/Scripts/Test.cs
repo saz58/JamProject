@@ -1,21 +1,26 @@
 using System;
 using GT.Asset;
-using GT.Audio;
+using GT.Game.Modules;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Test : MonoBehaviour, IResourceReferenceHolder
+namespace TestV
 {
-    [SerializeField] private Button a;
-    [SerializeField] private Button b;
-    [SerializeField] private Button c;
-
-    public Action DestroyResource { get; set; }
-
-    
-    [EditorButton]
-    private void AudioTest()
+    public class Test : MonoBehaviour, IResourceReferenceHolder
     {
-        GameApplication.Instance.gameAudio.PlaySfxOnce(SoundFx.explosionNear, UnityEngine.Random.value);
+        [SerializeField] private Button a;
+        [SerializeField] private Button b;
+        [SerializeField] private Button c;
+
+        public Action DestroyResource { get; set; }
+
+
+        [EditorButton]
+        private void TestA()
+        {
+            var module = RandomPickableModuleSpawner.CreatePickableModule(Vector2.zero);
+            module.gameObject.SetActive(true);
+
+        }
     }
 }
