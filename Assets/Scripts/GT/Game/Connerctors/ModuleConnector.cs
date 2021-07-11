@@ -24,7 +24,7 @@ namespace GT.Game.Connectors
             set => gameObject.SetActive(value);
         }
 
-        private void Awake()
+        private void Start()
         {
             _spriteColor = spriteRenderer.color;
             constructor = transform.parent.GetComponent<SwarmConstructor>();

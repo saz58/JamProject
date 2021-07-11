@@ -27,3 +27,5 @@ MonoBehaviour:
     count: 50
   - key: ModuleConnector
     count: 50
+  - key: PlayerShellItem
+    count: 200

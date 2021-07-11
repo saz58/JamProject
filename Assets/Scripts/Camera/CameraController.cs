@@ -39,6 +39,9 @@ public class CameraController : MonoBehaviour
     
     public void RegisterOverlayCamera()
     {
+        if (UIScreenController.Instance == null)
+            return;
+
         var cameraData = _camera.GetUniversalAdditionalCameraData();
         cameraData.cameraStack.Add(UIScreenController.Instance.UICamera);
 
