@@ -41,9 +41,9 @@ public class CacheLoader
     {
         get
         {
-            if (_movementSettings == null)
-                _movementSettings = Resources.Load<MovementData>("MovementEnemyData");
-            return _movementSettings;
+            if (_movementEnemySettings == null)
+                _movementEnemySettings = Resources.Load<MovementData>("MovementEnemyData");
+            return _movementEnemySettings;
         }
     }
 }

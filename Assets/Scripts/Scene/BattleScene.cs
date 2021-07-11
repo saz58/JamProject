@@ -61,7 +61,7 @@ namespace Scene
             Player.Setup(swarm);
 
             _cameraController.Setup(Player.transform);
-            _enemySpawner.Setup(Player);
+            _enemySpawner.Setup(Player, _cameraController);
             _backgroundController.Setup(_cameraController);
         }
 

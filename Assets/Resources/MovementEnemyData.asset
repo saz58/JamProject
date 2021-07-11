@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9be5610af53904d1baf75f908f2008fa, type: 3}
   m_Name: MovementEnemyData
   m_EditorClassIdentifier: 
-  _linearSpeedCoef: 0.0005
+  _linearSpeedCoef: 0.5
   _angularSpeedCoef: 20
-  _linearVelocityLimit: 1
+  _linearVelocityLimit: 10
   _angularVelocityLimit: 40

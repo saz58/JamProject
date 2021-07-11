@@ -241,5 +241,18 @@ namespace GT.Game.Swarms
                 return new Vector2((float)Math.Round(obj.x, 2), (float)Math.Round(obj.y, 2)).GetHashCode();
             }
         }
+
+        public Bounds GetBound()
+        {
+            Bounds bounds = new Bounds();
+            foreach (var ms in _allModules)
+            {
+                if(ms.Value.Collider)
+                {
+                    bounds.Encapsulate(ms.Value.Collider.bounds);
+                }
+            }
+            return bounds;
+        }
     }
 }

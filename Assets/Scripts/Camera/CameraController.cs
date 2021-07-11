@@ -1,7 +1,6 @@
 using UnityEngine;
 using Cinemachine;
 using GT.UI;
-using Scene;
 using UnityEngine.Rendering.Universal;
 
 public class CameraController : MonoBehaviour
@@ -17,6 +16,8 @@ public class CameraController : MonoBehaviour
 
     public Vector3 CamBL => Camera.transform.position - Vector3.right * Hfov * 0.5f - Vector3.up * Vfov * 0.5f;
     public Vector3 CamTR => Camera.transform.position + Vector3.right * Hfov * 0.5f + Vector3.up * Vfov * 0.5f;
+
+    public Bounds Bound => new Bounds(Camera.transform.position, new Vector2(CamTR.x - CamBL.x, CamTR.y - CamBL.y));
 
     public void Setup(Transform target)
     {
@@ -47,5 +48,15 @@ public class CameraController : MonoBehaviour
 
         if (UIScreenController.Instance.UICamera.gameObject.activeSelf == false)
             UIScreenController.Instance.UICamera.gameObject.SetActive(true);
+    }
+
+    //public bool IsInCameraView(Rect rect)
+    //{
+    //    return rect.Overlaps(new Rect(Camera.transform.position, new Vector2(CamTR.x - CamBL.x, CamTR.y - CamBL.y)));
+    //}
+
+    public bool IsInCameraView(Bounds bound)
+    {
+        return bound.Intersects(Bound);
     }
 }

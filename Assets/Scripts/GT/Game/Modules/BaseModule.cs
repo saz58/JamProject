@@ -10,6 +10,9 @@ namespace GT.Game.Modules
 {
     public class BaseModule : MonoBehaviour
     {
+        [SerializeField] private PolygonCollider2D _collider;
+        public PolygonCollider2D Collider => _collider ?? (_collider = GetComponentInChildren<PolygonCollider2D>());
+
         public static readonly Vector2[] ConnectDirrections =
         {
             new Vector2(0.86f, 0.5f),

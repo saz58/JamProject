@@ -15,10 +15,12 @@ namespace GT.Game.Enemy
         public static List<Swarm> _allEnemy = new List<Swarm>(200);
 
         private PlayerController _playerController;
+        private CameraController _cameraController;
 
-        public void Setup(PlayerController playerController)
+        public void Setup(PlayerController playerController, CameraController cameraController)
         {
             _playerController = playerController;
+            _cameraController = cameraController;
             InvokeRepeating(nameof(Spawn), _startDelay, _minSpawnInterval);
         }
 
@@ -29,6 +31,7 @@ namespace GT.Game.Enemy
 
             var spawnPosition = GetPosition();
             var enemy = RandomSwarmGenerator.SpawnEnemy(spawnPosition, GetConfiguration(), GetModulCount());
+            CorrectPositionOnScreen(enemy);
             _allEnemy.Add(enemy);
         }
 
@@ -42,9 +45,20 @@ namespace GT.Game.Enemy
             return pos3d;
         }
 
+        public void CorrectPositionOnScreen(Swarm enemy)
+        {
+            var bound = enemy.GetBound();
+            if(_cameraController.IsInCameraView(bound))
+            {
+                var direction = enemy.transform.position - _cameraController.Camera.transform.position;
+                direction.Normalize();
+                enemy.transform.position += direction * Mathf.Max(bound.size.x, bound.size.y);
+            }
+        }
+
         private EnemyConfiguration GetConfiguration()
         {
-            var type = Enemy.EnemyType.Walker;
+            var type = EnemyType.Walker;
             return EnemyConfiguration.GetForType(type);
         }
 
