@@ -16,6 +16,7 @@ namespace GT.Data.Game
             _modulesData = new Dictionary<int, ModuleData>();
         }
 
+        private static sbyte _firstSpawnGuns = 3;
         private static List<PickableModule> _pickableModules;
         private static Dictionary<int, ModuleData> _modulesData;
         public static Action<PickableModule> OnModulePicked;
@@ -51,7 +52,13 @@ namespace GT.Data.Game
             {
                 _types = EnumExts.GetCastValues<ModuleType>().ToList();
                 _types.Remove(0); // remove core;
-                
+
+                if (_firstSpawnGuns >= 0)
+                {
+                    _firstSpawnGuns --;
+                    return new AttackModuleData(_modulesData.Count);
+                }
+ 
                 switch (_types.PickRandom())
                 {
                     case ModuleType.Attack:

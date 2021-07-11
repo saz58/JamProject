@@ -11,18 +11,10 @@ namespace GT.UI.Game.Screen
         [SerializeField] private Button skipBtn = default;
         [SerializeField] private Image splashImg = default;
         [SerializeField] private Image tutorial = default;
-
-        private const string tutorialDisplayed = "tutorial";
-
-        [EditorButton]
-        private void Test()
-        {
-            Init(null);
-        }
-
+        private const string TutorialDisplayed = "tutorial";
         private void Awake()
         {
-            splashImg.SetAlpha(0);
+            // splashImg.SetAlpha(0);
             tutorial.SetAlpha(0);
             skipBtn.gameObject.SetActive(false);
             startBtn.gameObject.SetActive(false);
@@ -36,13 +28,10 @@ namespace GT.UI.Game.Screen
             skipBtn.onClick.RemoveAllListeners();
             startBtn.onClick.RemoveAllListeners();
             
-            StartCoroutine(splashImg.Fade(1, 1, () =>
-            {
-                startBtn.gameObject.SetActive(true);
-                startBtn.transform.CycleScale(this, 2, Vector3.one * 1.1F,0.05F);
-            }));
+            startBtn.gameObject.SetActive(true);
+            startBtn.transform.CycleScale(this, 2, Vector3.one * 1.1F,0.05F);
             
-            if (PlayerPrefs.GetInt(tutorialDisplayed, 0) > 0)
+            if (PlayerPrefs.GetInt(TutorialDisplayed, 0) > 0)
             {
                 startBtn.onClick.AddListener(() =>
                 {
@@ -65,7 +54,7 @@ namespace GT.UI.Game.Screen
                     StartCoroutine(tutorial.Fade(0, 0.4F));
                     startBtnAction?.Invoke();
                 });
-                PlayerPrefs.SetInt(tutorialDisplayed, 1);
+                PlayerPrefs.SetInt(TutorialDisplayed, 1);
             }
         }
 

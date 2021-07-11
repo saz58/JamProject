@@ -5,7 +5,7 @@ namespace GT.Game.Modules
 {
     public static class RandomPickableModuleSpawner
     {
-        public static PickableModule SpawnPickableModule(Vector2 position)
+        private static PickableModule SpawnPickableModule(Vector2 position)
         {
             var pickableModule = PoolManager.Get<PickableModule>(nameof(PickableModule));
             pickableModule.transform.position = position;

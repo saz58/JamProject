@@ -23,19 +23,26 @@ namespace Scene
             _cameraController.RegisterOverlayCamera();
             Debug.Log("[BattleScene] Start");
 
-            UIScreenController.Instance.Create<StartScreen>(screen => { screen.Init(StartGame); });
+            UIScreenController.Instance.Create<StartScreen>(screen =>
+            {
+                UIScreenController.Instance.HideLoadingScreen();
+                screen.Init(StartGame);
+            });
 
             void StartGame()
             {
-                if (!CacheLoader.CacheReady)
+                UIScreenController.Instance.Create<MainHud>(hud =>
                 {
-                    AddressableHandler.Instance.OnAllLoaded += SetupScene;
-                    AddressableHandler.Instance.GetAsync(CacheLoader.AssetsData.ItemKeys);
-                }
-                else
-                {
-                    SetupScene();
-                }
+                    if (!CacheLoader.CacheReady)
+                    {
+                        AddressableHandler.Instance.OnAllLoaded += SetupScene;
+                        AddressableHandler.Instance.GetAsync(CacheLoader.AssetsData.ItemKeys);
+                    }
+                    else
+                    {
+                        SetupScene();
+                    }
+                });
             }
         }
 

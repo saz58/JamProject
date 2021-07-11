@@ -31,13 +31,7 @@ public class GameApplication : MonoBehaviour
 
         void RunGame()
         {
-            AddressableHelper.LoadSceneByKey(_startFromScene.ToString(), () =>
-            {
-                uiScreenController.Create<MainHud>(hud =>
-                {
-                    uiScreenController.HideLoadingScreen();
-                });
-            }, null);
+            AddressableHelper.LoadSceneByKey(_startFromScene.ToString(),null,null);
         }
     }
 
