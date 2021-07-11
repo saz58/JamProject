@@ -2,8 +2,8 @@ namespace GT.Audio
 {
     public enum SoundFx
     {
-        TestA,
-        BackgroundMusic,
+        //TestA,
+        //BackgroundMusic,
         explosionNear,
         ModuleDestroy,
         BlasterShoot,
