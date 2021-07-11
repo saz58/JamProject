@@ -34,8 +34,7 @@ public class EnemyControl : BaseControl
 
     protected override void AimTo(Vector3 point)
     {
-        var worldPoint = _coordsTransformCamera.ScreenToWorldPoint(point);
-        TriggerOnTargetPositionChanged(worldPoint);
+        TriggerOnTargetPositionChanged(point);
     }
 
     protected override void Shoot()

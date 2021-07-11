@@ -26,7 +26,7 @@ public class EnemyAttackBehaviour : MonoBehaviour
         if (distanceToPlayer > 10)
             return;
 
-        LookAt?.Invoke(_swarm.transform.position);
+        LookAt?.Invoke( _swarm.transform.position);
 
         if (distanceToPlayer < 4 && distanceToPlayer > 2)
         {
