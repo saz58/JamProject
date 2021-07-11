@@ -29,13 +29,21 @@ namespace GT.UI.Game.Screen
         public void Init(Action startBtnAction)
         {
             startBtnAction += () => Close(null);
-            
+            startBtnAction += () =>
+            {
+                if (!_isBackgroundMusicStarted)
+                {
+                    GameApplication.Instance.gameAudio.PlayMusic(_backgorundMusic, 0.24f);
+                }
+            };
+
+
             skipBtn.onClick.RemoveAllListeners();
             startBtn.onClick.RemoveAllListeners();
-            
+
             startBtn.gameObject.SetActive(true);
-            startBtn.transform.CycleScale(this, 2, Vector3.one * 1.1F,0.05F);
-            
+            startBtn.transform.CycleScale(this, 2, Vector3.one * 1.1F, 0.05F);
+
             if (PlayerPrefs.GetInt(TutorialDisplayed, 0) > 0)
             {
                 startBtn.onClick.AddListener(() =>
@@ -43,23 +51,18 @@ namespace GT.UI.Game.Screen
                     startBtnAction?.Invoke();
                     StartCoroutine(startBtn.transform.Scale(Vector3.zero, 0.1F));
                     StartCoroutine(splashImg.Fade(0, 0.4F));
-
-                    if (!_isBackgroundMusicStarted)
-                    {
-                        GameApplication.Instance.gameAudio.PlayMusic(_backgorundMusic, 0.24f);
-                    }
                 });
             }
             else
                 startBtn.onClick.AddListener(DisplayTutorial);
-            
+
             void DisplayTutorial()
             {
                 StartCoroutine(startBtn.transform.Scale(Vector3.zero, 0.1F));
                 skipBtn.gameObject.SetActive(true);
                 StartCoroutine(splashImg.Fade(0, 0.4F));
                 StartCoroutine(tutorial.Fade(1, 0.4F));
-                skipBtn.onClick.AddListener(()=>
+                skipBtn.onClick.AddListener(() =>
                 {
                     StartCoroutine(tutorial.Fade(0, 0.4F));
                     startBtnAction?.Invoke();
