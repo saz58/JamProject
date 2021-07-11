@@ -20,7 +20,7 @@ namespace GT.Audio
         public int sfxSourcesLimit = 12;
         public AudioMixerGroup sfxAudioMixerGroup = null;
         public Action DestroyResource { get; set; }
-        private Dictionary<SoundFx, AudioClip> _cachedClips;
+        private Dictionary<SoundFx, AudioClip> _cachedClips = new Dictionary<SoundFx, AudioClip>();
 
         private void Awake()
         {
