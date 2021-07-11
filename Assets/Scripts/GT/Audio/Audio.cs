@@ -81,7 +81,7 @@ namespace GT.Audio
         public void PlaySfx(SoundFx soundFx, float volume = -1)
         {
             if (_cachedClips.TryGetValue(soundFx, out var c))
-                PlaySfx(c);
+                PlaySfx(c, volume);
             else
                 Debug.LogError($"Audio address: {soundFx} don't exists.");
         }
