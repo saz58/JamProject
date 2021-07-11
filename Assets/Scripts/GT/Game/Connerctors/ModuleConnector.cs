@@ -35,6 +35,7 @@ namespace GT.Game.Connectors
         {
             spriteRenderer.enabled = toggle;
             collider.enabled = toggle;
+            transform.localRotation = Quaternion.identity;
         }
 
         public void OnPointerClick(PointerEventData eventData)
