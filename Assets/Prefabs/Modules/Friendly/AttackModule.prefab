@@ -140,7 +140,7 @@ MonoBehaviour:
   _coolDown: 0.5
   _speed: 2
   _lifeTime: 50
-  _damage: 1
+  _damage: 10
   _shellRaycasLayerMask:
     serializedVersion: 2
     m_Bits: 182
@@ -172,6 +172,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _destroyVFX: {fileID: 0}
+  _damageAnimation: {fileID: 301606858354333868}
   _aimBehaviour: {fileID: 3768265466938763778}
   _fireBehaviour: {fileID: 1887652004787598078}
 --- !u!1001 &6975257993542397427
@@ -192,6 +193,10 @@ PrefabInstance:
     - target: {fileID: 3839071594265008212, guid: f153d1a841fb2cf4993eb4ffb5d2ae3a, type: 3}
       propertyPath: m_Layer
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3999201934469936623, guid: f153d1a841fb2cf4993eb4ffb5d2ae3a, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5101949208167883263, guid: f153d1a841fb2cf4993eb4ffb5d2ae3a, type: 3}
       propertyPath: m_IsTrigger
@@ -261,3 +266,14 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6936271468764702265, guid: f153d1a841fb2cf4993eb4ffb5d2ae3a, type: 3}
   m_PrefabInstance: {fileID: 6975257993542397427}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &301606858354333868 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7269546362914764127, guid: f153d1a841fb2cf4993eb4ffb5d2ae3a, type: 3}
+  m_PrefabInstance: {fileID: 6975257993542397427}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6163747243845825959}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81dbbc941a32b2a418ba887a09c3ddaa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

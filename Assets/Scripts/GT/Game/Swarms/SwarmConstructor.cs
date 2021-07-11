@@ -23,6 +23,13 @@ namespace GT.Game.Swarms
         }
 
         [EditorButton]
+        public void AddCoreModule()
+        {
+            var module = ModuleFactory.CreateModule(new CoreModuleData(0), SwarmFaction.Bee, Vector2.zero, _swarm.transform);
+            _swarm.SetCoreModule((CoreModule)module);
+        }
+
+        [EditorButton]
         public void TestAdd()
         {
             var connectorPosition = _toAdd == null || !_toAdd.IsActive ? GetConnectPosition() : _toAdd.Position;

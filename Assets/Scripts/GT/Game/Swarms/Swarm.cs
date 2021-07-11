@@ -4,13 +4,12 @@ using System.Linq;
 using GT.Game.Connectors;
 using GT.Game.Modules;
 using GT.Game.SwarmControls;
-using Pool;
 using UnityEngine;
 
 namespace GT.Game.Swarms
 {
 
-    public class Swarm : MonoBehaviour, IPoolObject
+    public class Swarm : MonoBehaviour
     {
         private BaseControl _baseControl;
 
@@ -63,7 +62,11 @@ namespace GT.Game.Swarms
 
             _coreModule = coreModule;
             _coreModule.Position = Vector2.zero;
+
             _allModules.Add(Vector2.zero, coreModule);
+
+            _coreModule.ConnectTo(this);
+
             UpdateConnectors(Vector2.zero);
         }
 
@@ -85,6 +88,24 @@ namespace GT.Game.Swarms
             }
 
             ProcessCascadeDestroy(position);
+        }
+
+        public void RemoveModule(BaseModule module)
+        {
+            if (!_allModules.TryGetValue(module.Position, out var checkModule) || checkModule != module)
+            {
+                Debug.LogError("Can't remove module that doesn't exist in swarm!");
+                return;
+            }
+
+            if (module == _coreModule)
+            {
+                DestroySwarm();
+            }
+            else
+            {
+                ProcessCascadeDestroy(module.Position);
+            }
         }
 
         public IEnumerable<Vector2> FreeConnectors()
@@ -133,6 +154,19 @@ namespace GT.Game.Swarms
 
                 var newConnector = ConnectorsFactory.CreateConnector(newConnectorPosition, transform);
                 _allConnectors.Add(newConnectorPosition, newConnector);
+            }
+        }
+
+        private void DestroySwarm()
+        {
+            foreach (var connector in _allConnectors.Values)
+            {
+                ConnectorsFactory.DestroyConnector(connector);
+            }
+
+            foreach (var module in _allModules.Values)
+            {
+                module.Destroy();
             }
         }
 
@@ -187,14 +221,6 @@ namespace GT.Game.Swarms
             {
                 UpdateConnectors(key);
             }
-        }
-
-        public void OnGetWithPool()
-        {
-        }
-
-        public void OnReturnToPool()
-        {
         }
 
         // Helper class to compare floats with lower accuracy

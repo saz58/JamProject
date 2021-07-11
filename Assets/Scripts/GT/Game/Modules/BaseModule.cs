@@ -20,6 +20,7 @@ namespace GT.Game.Modules
         };
 
         [SerializeField] private GameObject _destroyVFX;
+        [SerializeField] private ModuleDamageAnimamtion _damageAnimation;
 
         private Action<BaseModule> _onDestroy;
 
@@ -69,9 +70,11 @@ namespace GT.Game.Modules
         {
             if (hp <= 0)
             {
+                _swarm.RemoveModule(this);
                 Destroy();
             }
 
+            _damageAnimation.PlayDamage();
         }
     }
 }

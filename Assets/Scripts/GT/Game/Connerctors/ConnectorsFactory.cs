@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using Pool;
+using UnityEngine.UIElements;
 
 namespace GT.Game.Connectors
 {
@@ -12,6 +13,12 @@ namespace GT.Game.Connectors
             connector.Position = position;
             connector.IsActive = true;
             return connector;
+        }
+
+        public static void DestroyConnector(ModuleConnector connector)
+        {
+            connector.IsActive = false;
+            PoolManager.Return(nameof(ModuleConnector), connector);
         }
     }
 }
