@@ -8,12 +8,11 @@ namespace GT.Game.Enemy
         [SerializeField] private EnemyConfiguration _configuration;
         [SerializeField] private Swarm _userSwarm;
         [SerializeField] private int _totalCount;
-        [SerializeField] private EnemySpawn _spawner;
 
         [EditorButton]
         public void Test()
         {
-            _spawner.Spawn(_userSwarm.Position, _configuration, _totalCount);
+            RandomSwarmGenerator.SpawnEnemy(_userSwarm.Position, _configuration, _totalCount);
         }
     }
 }

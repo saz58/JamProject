@@ -6,5 +6,6 @@ namespace GT.Asset
         GameScene,
         Demo,
         Battle,
+        Lobby,
     }
 }

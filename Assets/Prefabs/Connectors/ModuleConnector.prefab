@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7176472144917711309}
   - component: {fileID: 5394716522525792840}
   m_Layer: 0
-  m_Name: Connector
+  m_Name: ModuleConnector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

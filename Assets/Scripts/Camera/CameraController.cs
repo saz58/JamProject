@@ -18,13 +18,10 @@ public class CameraController : MonoBehaviour
     public Vector3 CamBL => Camera.transform.position - Vector3.right * Hfov * 0.5f - Vector3.up * Vfov * 0.5f;
     public Vector3 CamTR => Camera.transform.position + Vector3.right * Hfov * 0.5f + Vector3.up * Vfov * 0.5f;
 
-    private BattleScene _battleScene;
-
-    public void Setup(BattleScene battleScene)
+    public void Setup(Transform target)
     {
-        _battleScene = battleScene;
-        //_virtualCamera.Follow = null;
-        //_virtualCamera.LookAt = null;
+        _virtualCamera.Follow = target;
+        _virtualCamera.LookAt = target;
     }
 
     public bool IsInCameraView(BackItem block)

@@ -14,7 +14,8 @@ namespace GT.Game.Modules
 
         protected override void AddEffectToSwarm(Swarm swarm)
         {
-            swarm.IncreaseSpeed(
+            if (swarm)
+                swarm.IncreaseSpeed(
                 Stats.LinearSpeedIncrease,
                 Stats.AngularSpeedIncrease,
                 Stats.LinearVelocityLimitIncrease,
@@ -23,7 +24,8 @@ namespace GT.Game.Modules
 
         protected override void RemoveEffectFromSwarm(Swarm swarm)
         {
-            swarm.IncreaseSpeed(
+            if (swarm)
+                swarm.IncreaseSpeed(
                 -Stats.LinearSpeedIncrease,
                 -Stats.AngularSpeedIncrease,
                 -Stats.LinearVelocityLimitIncrease,

@@ -1,19 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float Speed = 1;
+    private MovementBehaviour _swarmMovement;
 
-    private void Update()
+    private Transform _myTransform;
+    public Transform MyTransform => _myTransform;
+
+    public Vector3 MovementDirection() => _swarmMovement.Velocity;
+
+    private void Awake()
     {
-        var v = Input.GetAxis("Vertical");
-        var h = Input.GetAxis("Horizontal");
-
-        var d = Vector3.right * h + Vector3.up * v;
-        d *= Speed;
-
-        transform.Translate(d* Time.deltaTime);
+        _myTransform = transform;
+        _swarmMovement = GetComponent<MovementBehaviour>();
     }
 }

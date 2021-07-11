@@ -11,8 +11,6 @@ GameObject:
   - component: {fileID: 8641903209728290983}
   - component: {fileID: 8641903209728290982}
   - component: {fileID: 8641903209728290977}
-  - component: {fileID: 8641903209728290906}
-  - component: {fileID: 8641903209728290980}
   - component: {fileID: 8641903209728290981}
   m_Layer: 0
   m_Name: Swarm
@@ -48,7 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _connectorsFactory: {fileID: 11400000, guid: e8014ae9a45f36c4889b661e7bd4c736, type: 2}
-  _baseControl: {fileID: 8641903209728290906}
+  _baseControl: {fileID: 0}
 --- !u!114 &8641903209728290977
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -65,37 +63,6 @@ MonoBehaviour:
   _midulesFactory: {fileID: 11400000, guid: 21d54099d7a06e547a218ff059d826ce, type: 2}
   _toDestroy: {fileID: 0}
   _toAdd: {fileID: 0}
---- !u!114 &8641903209728290906
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8641903209728290976}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5ccd0254ad617594b932e0bdffc2ce67, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _linearSpeedCoef: 3
-  _angularSpeedCoef: 50
-  _movementBehaviour: {fileID: 8641903209728290980}
-  _coordsTransformCamera: {fileID: 0}
---- !u!114 &8641903209728290980
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8641903209728290976}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6cceabfd10f9ccc438712aa3653bc77b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _rigidbody: {fileID: 8641903209728290981}
-  _linearVelocityLimit: 20
-  _angularVelocityLimit: 60
 --- !u!50 &8641903209728290981
 Rigidbody2D:
   serializedVersion: 4

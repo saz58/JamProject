@@ -1,23 +1,47 @@
 ﻿using GT.Data.Game;
 using GT.Game.Modules;
+using GT.Game.SwarmControls;
+using Pool;
 using UnityEngine;
 
 namespace GT.Game.Swarms
 {
-    [CreateAssetMenu(fileName = "SwarmFactory", menuName = "ScriptableObjects/SwarmFactory")]
-    public class SwarmFactory : ScriptableObject
+    public static class SwarmFactory
     {
-        [SerializeField] private ModuleFactory _moduleFactory;
-        [SerializeField] private Swarm _prefab;
-
-        public Swarm CreateSwarm(Vector2 position)
+        public static Swarm CreatePlayer(Vector2 position)
         {
-            var swarm = Instantiate(_prefab);
+            var swarm = PoolManager.Get<Swarm>(nameof(Swarm));
             swarm.transform.position = position;
 
-            // TODO: get data from outside
-            var coreModule = _moduleFactory.CreateModule(new CoreModuleData(200), Vector2.zero, swarm.transform);
-            swarm.SetCoreModule((CoreModule)coreModule);
+            var module = ModuleFactory.CreateModule(new CoreModuleData(200), Vector2.zero, swarm.transform);
+            swarm.SetCoreModule((CoreModule)module);
+
+            var movement = swarm.gameObject.AddComponent<MovementBehaviour>();
+            movement.Setup(CacheLoader.MovementSettings, swarm.GetComponent<Rigidbody2D>());
+
+            var control = swarm.gameObject.AddComponent<PlayerControl>();
+            control.Setup(movement);
+
+            swarm.Setup(control);
+
+            return swarm;
+        }
+
+        public static Swarm CreateEnemy(Vector2 position)
+        {
+            var swarm = PoolManager.Get<Swarm>(nameof(Swarm));
+            swarm.transform.position = position;
+
+            var module = ModuleFactory.CreateModule(new CoreModuleData(200), Vector2.zero, swarm.transform);
+            swarm.SetCoreModule((CoreModule)module);
+
+            var movement = swarm.gameObject.AddComponent<EnemyMovementBehaviour>();
+            movement.Setup(CacheLoader.MovementSettings, swarm.GetComponent<Rigidbody2D>());
+
+            var control = swarm.gameObject.AddComponent<EnemyControl>();
+            control.Setup(movement);
+
+            swarm.Setup(control);
 
             return swarm;
         }

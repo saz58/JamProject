@@ -59,14 +59,38 @@ MonoBehaviour:
     m_SerializedLabels: []
     m_MainAsset: {fileID: 0}
     m_TargetAsset: {fileID: 0}
-  - m_GUID: 1f565a46f041c2746b87e27f9c69a5ba
-    m_Address: PlayerShellItem
+  - m_GUID: ce8b377855f0c4bffa957f173a19ccd8
+    m_Address: Swarm
     m_ReadOnly: 0
     m_SerializedLabels: []
     m_MainAsset: {fileID: 0}
     m_TargetAsset: {fileID: 0}
-  - m_GUID: e7565194bcc0877429548906e2a30497
-    m_Address: EnemyShellItem
+  - m_GUID: 72d05a47e32b7db479c7b6adefcda395
+    m_Address: AttackModule
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: bec920276385d184dbff477749a8e7bc
+    m_Address: CoreModule
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: dd8fc2091532f4d4b9d149895b93cc0b
+    m_Address: ShieldModule
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: b98b6d4435f9ce746991e8645012424a
+    m_Address: SpeedModule
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: b03b362cc93ef3f44948420067b06b45
+    m_Address: ModuleConnector
     m_ReadOnly: 0
     m_SerializedLabels: []
     m_MainAsset: {fileID: 0}

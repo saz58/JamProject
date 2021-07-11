@@ -4,15 +4,14 @@ using System.Linq;
 using GT.Game.Connectors;
 using GT.Game.Modules;
 using GT.Game.SwarmControls;
+using Pool;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 namespace GT.Game.Swarms
 {
-    public class Swarm : MonoBehaviour
+    public class Swarm : MonoBehaviour, IPoolObject
     {
-        [SerializeField] private ConnectorsFactory _connectorsFactory;
-        [SerializeField] private BaseControl _baseControl;
+        private BaseControl _baseControl;
 
         private CoreModule _coreModule;
         private Dictionary<Vector2, BaseModule> _allModules = new Dictionary<Vector2, BaseModule>(FloatComparer.Instance);
@@ -23,14 +22,15 @@ namespace GT.Game.Swarms
         public event Action<Vector2> OnTargetPositionChanged;
         public event Action OnFire;
 
-        private void Awake()
+        public void Setup(BaseControl control)
         {
+            _baseControl = control;
             _baseControl.OnTargetPositionChanged += pos => OnTargetPositionChanged?.Invoke(pos);
             _baseControl.OnFire += () => OnFire?.Invoke();
-            
+
             InputManager.Instance.OnConstructButtonDown += ToggleConstructMode;
-            
         }
+
         private void OnDestroy()
         {
             InputManager.Instance.OnConstructButtonDown -= ToggleConstructMode;
@@ -125,7 +125,7 @@ namespace GT.Game.Swarms
                     continue;
                 }
 
-                var newConnector = _connectorsFactory.CreateConnector(newConnectorPosition, transform);
+                var newConnector = ConnectorsFactory.CreateConnector(newConnectorPosition, transform);
                 _allConnectors.Add(newConnectorPosition, newConnector);
             }
         }
@@ -181,6 +181,14 @@ namespace GT.Game.Swarms
             {
                 UpdateConnectors(key);
             }
+        }
+
+        public void OnGetWithPool()
+        {
+        }
+
+        public void OnReturnToPool()
+        {
         }
 
         // Helper class to compare floats with lower accuracy

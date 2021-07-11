@@ -5,30 +5,30 @@ namespace GT.Game.SwarmControls
 {
     public class BaseControl : MonoBehaviour
     {
-        [Header("Movement settings")]
-        [SerializeField] private float _linearSpeedCoef = 3f;
-        [SerializeField] private float _angularSpeedCoef = 50f;
-        [SerializeField] private MovementBehaviour _movementBehaviour;
-
         public event Action<Vector2> OnTargetPositionChanged;
         public event Action OnFire;
 
+        private MovementBehaviour _movementBehaviour;
+
         public void IncreaseSpeed(float linearSpeed, float angularSpeed, float linearVelocityLimit, float angularVelocityLimit)
         {
-            _movementBehaviour.IncreaseLimit(linearVelocityLimit, angularVelocityLimit);
-            _linearSpeedCoef += linearSpeed;
-            _angularSpeedCoef += angularSpeed;
+            _movementBehaviour.IncreaseLimit(linearSpeed, angularSpeed, linearVelocityLimit, angularVelocityLimit);
+        }
+
+        public void Setup(MovementBehaviour movement)
+        {
+            _movementBehaviour = movement;
         }
 
         protected virtual void MoveToDirection(float x, float y)
         {
-            Vector2 linearVelocity = new Vector2(x, y) * Time.deltaTime * _linearSpeedCoef;
+            Vector2 linearVelocity = new Vector2(x, y) * Time.deltaTime;
             _movementBehaviour.AddLinearVelocity(linearVelocity);
         }
 
         protected virtual void RotateShip(float angle)
         {
-            float angularVelocity = angle * Time.deltaTime * _angularSpeedCoef;
+            float angularVelocity = angle * Time.deltaTime;
             _movementBehaviour.AddAngularVelocity(angularVelocity);
         }
 

@@ -15,26 +15,29 @@ namespace GT.Game.Enemy
         public float ShieldBlockPersent;
         public float SpeedBlockPersent;
         public float FullLevelChanse;
+
+        public static EnemyConfiguration GetDefault()
+        {
+            return new EnemyConfiguration()
+            {
+                AttackblocksPersent = 0.25f,
+                ShieldBlockPersent = 0.25f,
+                SpeedBlockPersent = 0.25f,
+                FullLevelChanse = 0.25f,
+            };
+        }
     }
 
-    public class EnemySpawn : MonoBehaviour
+    public static class RandomSwarmGenerator
     {
-        [SerializeField] private SwarmFactory _swarmFactory;
-        [SerializeField] private ModuleFactory _moduleFactory;
-        [SerializeField] private float _distanceFromPlayer; 
-
-        public Swarm Spawn(Vector2 playerPosition, EnemyConfiguration enemyConfiguration, int totalModulesCound)
+        public static Swarm SpawnEnemy(Vector2 spawnPosition, EnemyConfiguration enemyConfiguration, int totalModulesCound)
         {
-            Vector2 enemyPosition = playerPosition + Random.insideUnitCircle.normalized * _distanceFromPlayer;
-
-            var swarm = _swarmFactory.CreateSwarm(enemyPosition);
-
-            GenerateBlocks(swarm, enemyConfiguration, totalModulesCound);
-
-            return swarm;
+            var enemy = SwarmFactory.CreateEnemy(spawnPosition);
+            GenerateBlocks(enemy, enemyConfiguration, totalModulesCound);
+            return enemy;
         }
 
-        private void GenerateBlocks(Swarm swarm, EnemyConfiguration enemyConfiguration, int totalModulesCound)
+        private static void GenerateBlocks(Swarm swarm, EnemyConfiguration enemyConfiguration, int totalModulesCound)
         {
             var modulesLeft = totalModulesCound;
 
@@ -51,7 +54,7 @@ namespace GT.Game.Enemy
                 foreach (var connector in allFreeConnectors.Take(modulesOnLevel))
                 {
                     var moduleData = RandomizeModule(enemyConfiguration);
-                    var module = _moduleFactory.CreateModule(moduleData, connector, swarm.transform);
+                    var module = ModuleFactory.CreateModule(moduleData, connector, swarm.transform);
                     swarm.AddModule(connector, module);
                 }
             }
@@ -67,7 +70,7 @@ namespace GT.Game.Enemy
             }
         }
 
-        private ModuleData RandomizeModule(EnemyConfiguration enemyConfiguration)
+        private static ModuleData RandomizeModule(EnemyConfiguration enemyConfiguration)
         {
             var attackChanse = enemyConfiguration.AttackblocksPersent;
             var shieldChanse = enemyConfiguration.AttackblocksPersent + enemyConfiguration.ShieldBlockPersent;
@@ -86,7 +89,7 @@ namespace GT.Game.Enemy
             return new SpeedModuleData(0, 0.2f, 1f, 2, 5);
         }
 
-        private void RandomizeArray(Vector2[] array)
+        private static void RandomizeArray(Vector2[] array)
         {
             for (var i = 0; i < array.Length; i++)
             {

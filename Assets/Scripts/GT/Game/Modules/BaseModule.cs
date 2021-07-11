@@ -1,10 +1,11 @@
 using GT.Game.Modules.Stats;
 using GT.Game.Swarms;
+using Pool;
 using UnityEngine;
 
 namespace GT.Game.Modules
 {
-    public class BaseModule : MonoBehaviour
+    public class BaseModule : MonoBehaviour, IPoolObject
     {
         public static readonly Vector2[] ConnectDirrections =
         {
@@ -54,5 +55,13 @@ namespace GT.Game.Modules
         protected virtual void RemoveEffectFromSwarm(Swarm swarm) { }
 
         protected virtual void OnDestroyInner() { }
+
+        public void OnGetWithPool()
+        {
+        }
+
+        public void OnReturnToPool()
+        {
+        }
     }
 }

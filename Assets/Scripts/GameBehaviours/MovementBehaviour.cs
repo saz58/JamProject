@@ -1,41 +1,46 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class MovementBehaviour : MonoBehaviour
 {
-    [SerializeField] private Rigidbody2D _rigidbody;
-    [Range(0,float.PositiveInfinity)]
-    [SerializeField] private float _linearVelocityLimit = 50f;
-    [Range(0, float.PositiveInfinity)]
-    [SerializeField] private float _angularVelocityLimit = 360f;
+    private Rigidbody2D _rigidbody;
+    private MovementData _movementSettings;
 
-    public void IncreaseLimit(float linearVelocityLimit, float angunalVelicityLimit)
+    public void IncreaseLimit(float linearSpeedCoef, float angularSpeedCoef, float linearVelocityLimit, float angunalVelicityLimit)
     {
-        _linearVelocityLimit += linearVelocityLimit;
-        _angularVelocityLimit += angunalVelicityLimit;
+        _movementSettings._linearVelocityLimit += linearVelocityLimit;
+        _movementSettings._angularVelocityLimit += angunalVelicityLimit;
+
+        _movementSettings._linearSpeedCoef += linearSpeedCoef;
+        _movementSettings._angularSpeedCoef += angularSpeedCoef;
+
     }
 
-    public void AddLinearVelocity(Vector2 linearVelocity)
-    {
-        Vector2 newVelocity = _rigidbody.velocity + linearVelocity;
-        
+    public Vector3 Velocity => _rigidbody.velocity;
 
-        if (newVelocity.magnitude > _linearVelocityLimit)
+    public void Setup(MovementData settings, Rigidbody2D rigidbody)
+    {
+        _movementSettings = settings;
+        _rigidbody = rigidbody;
+    }
+
+    public virtual void AddLinearVelocity(Vector2 linearVelocity)
+    {
+        Vector2 newVelocity = _rigidbody.velocity + linearVelocity * _movementSettings._linearSpeedCoef;
+        if (newVelocity.magnitude > _movementSettings._linearVelocityLimit)
         {
-            newVelocity = newVelocity.normalized * _linearVelocityLimit;
+            newVelocity = newVelocity.normalized * _movementSettings._linearVelocityLimit;
         }
 
         _rigidbody.velocity = newVelocity;
     }
 
-    public void AddAngularVelocity(float angularVelocity)
+    public virtual void AddAngularVelocity(float angularVelocity)
     {
-        float newAngularVelocity = _rigidbody.angularVelocity + angularVelocity;
+        float newAngularVelocity = _rigidbody.angularVelocity + angularVelocity * _movementSettings._angularSpeedCoef;
         
-        if (Mathf.Abs(newAngularVelocity) > _angularVelocityLimit)
+        if (Mathf.Abs(newAngularVelocity) > _movementSettings._angularVelocityLimit)
         {
-            newAngularVelocity = Mathf.Sign(newAngularVelocity) * _angularVelocityLimit;
+            newAngularVelocity = Mathf.Sign(newAngularVelocity) * _movementSettings._angularVelocityLimit;
         }
 
         _rigidbody.angularVelocity = newAngularVelocity;

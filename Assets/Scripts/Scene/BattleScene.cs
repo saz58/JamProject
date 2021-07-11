@@ -1,3 +1,7 @@
+using GT.Data.Game;
+using GT.Game.Enemy;
+using GT.Game.Modules;
+using GT.Game.Swarms;
 using UnityEngine;
 
 namespace Scene
@@ -7,6 +11,7 @@ namespace Scene
         public static SceneId SceneId = SceneId.Battle;
         [SerializeField] private CameraController _cameraController;
         [SerializeField] private BackgroundController _backgroundController;
+        [SerializeField] private EnemySpawner _enemySpawner;
 
         private bool _init;
 
@@ -32,16 +37,19 @@ namespace Scene
             _init = true;
             CacheLoader.Setup();
 
-            _cameraController.Setup(this);
+            var player = SwarmFactory.CreatePlayer(transform.position);
+            var playerController = player.gameObject.AddComponent<PlayerController>();
+
+            _cameraController.Setup(player.transform);
+            _enemySpawner.Setup(playerController);
             _backgroundController.Setup(_cameraController);
         }
 
-        
-        public void Update()
-        {
-            if (!_init || !Application.isFocused)
-                return;
-        }
+        //public void Update()
+        //{
+        //    if (!_init || !Application.isFocused)
+        //        return;
+        //}
 
     }
 }

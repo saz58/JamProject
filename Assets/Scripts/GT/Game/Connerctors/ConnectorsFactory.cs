@@ -1,15 +1,14 @@
 ﻿using UnityEngine;
+using Pool;
 
 namespace GT.Game.Connectors
 {
-    [CreateAssetMenu(fileName = nameof(ConnectorsFactory), menuName = "ScriptableObjects/ConnectorsFactory")]
-    public class ConnectorsFactory : ScriptableObject
+    public static class ConnectorsFactory
     {
-        [SerializeField] private ModuleConnector _prefab;
-
-        public ModuleConnector CreateConnector(Vector2 position, Transform parent)
+        public static ModuleConnector CreateConnector(Vector2 position, Transform parent)
         {
-            var connector = Instantiate(_prefab, parent);
+            var connector = PoolManager.Get<ModuleConnector>(nameof(ModuleConnector));
+            connector.transform.SetParent(parent);
             connector.Position = position;
             connector.IsActive = true;
             return connector;

@@ -2,10 +2,11 @@ using GT.Data.Game;
 using GT.Game.Swarms;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using Pool;
 
 namespace GT.Game.Connectors
 {
-    public class ModuleConnector : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
+    public class ModuleConnector : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler, IPoolObject
     {
         [SerializeField] private SpriteRenderer spriteRenderer = default;
         private Color32 _spriteColor;
@@ -45,6 +46,14 @@ namespace GT.Game.Connectors
         public void OnPointerEnter(PointerEventData eventData)
         {
             spriteRenderer.color = new Color(spriteRenderer.color.r,spriteRenderer.color.g, spriteRenderer.color.b, 255);
+        }
+        
+        public void OnGetWithPool()
+        {
+        }
+
+        public void OnReturnToPool()
+        {
         }
 
         public void OnPointerExit(PointerEventData eventData)

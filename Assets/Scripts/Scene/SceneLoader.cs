@@ -13,7 +13,7 @@ namespace Scene
 
 		public static string SelectedLevel { get; private set; }
 
-		public static SceneId SceneId { get; private set; } = SceneId.Init;
+		public static SceneId SceneId { get; private set; } = SceneId.Lobby;
 
 		public event Action<float> ProgressChanged;
 

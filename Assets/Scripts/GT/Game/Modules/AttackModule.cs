@@ -13,12 +13,18 @@ namespace GT.Game.Modules
 
         protected override void AddEffectToSwarm(Swarm swarm)
         {
+            if (!swarm)
+                return;
+
             swarm.OnTargetPositionChanged += AimTo;
             swarm.OnFire += Fire;
         }
 
         protected override void RemoveEffectFromSwarm(Swarm swarm)
         {
+            if (!swarm)
+                return;
+
             swarm.OnTargetPositionChanged -= AimTo;
             swarm.OnFire -= Fire;
         }

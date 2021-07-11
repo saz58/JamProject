@@ -1,30 +1,38 @@
 using Pool;
 using UnityEngine;
 
-namespace Scene
+public class CacheLoader
 {
-    public class CacheLoader
+    private static GameAssetsData assetsData;
+    public static GameAssetsData AssetsData
     {
-        private static GameAssetsData assetsData;
-        public static GameAssetsData AssetsData
+        get
         {
-            get
-            {
-                if(assetsData == null)
-                    assetsData = Resources.Load<GameAssetsData>("GameAssetsData");
-                return assetsData;
-            }
+            if(assetsData == null)
+                assetsData = Resources.Load<GameAssetsData>(nameof(GameAssetsData));
+            return assetsData;
         }
+    }
 
-        public static bool CacheReady { get; set; }
+    public static bool CacheReady { get; set; }
 
-        public static void Setup()
+    public static void Setup()
+    {
+        foreach (var assets in AssetsData.Assets)
         {
-            foreach (var assets in AssetsData.Assets)
-            {
-                var prefab = AddressableHandler.Instance.Get(assets.key);
-                PoolManager.Instance.Register(new PoolDataStruct(assets.key, prefab, assets.count));
-            }
+            var prefab = AddressableHandler.Instance.Get(assets.key);
+            PoolManager.Instance.Register(new PoolDataStruct(assets.key, prefab, assets.count));
+        }
+    }
+
+    private static MovementData _movementSettings;
+    public static MovementData MovementSettings
+    {
+        get
+        {
+            if (_movementSettings == null)
+                _movementSettings = Resources.Load<MovementData>(nameof(MovementData));
+            return _movementSettings;
         }
     }
 }

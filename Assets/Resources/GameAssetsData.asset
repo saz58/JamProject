@@ -15,5 +15,15 @@ MonoBehaviour:
   _assets:
   - key: BackItem
     count: 20
-  - key: PlayerShellItem
-    count: 200
+  - key: Swarm
+    count: 50
+  - key: AttackModule
+    count: 50
+  - key: CoreModule
+    count: 50
+  - key: ShieldModule
+    count: 50
+  - key: SpeedModule
+    count: 50
+  - key: ModuleConnector
+    count: 50
