@@ -47,6 +47,8 @@ namespace GT.Game.Swarms
 
         private void ToggleConstructMode(bool toggle)
         {
+            _baseControl.ToggleConstructMode(toggle);
+
             foreach (var connector in _allConnectors)
             {
                 connector.Value.Highlight(toggle);

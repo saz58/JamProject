@@ -11,7 +11,6 @@ namespace GT.Game.SwarmControls
             InputManager.Instance.OnMovementAxisUpdate += MoveToDirection;
             InputManager.Instance.OnRotationAxisUpdate += RotateShip;
             InputManager.Instance.OnWorldSpacePointerPositionUpdate += AimTo;
-            InputManager.Instance.OnConstructButtonDown += ToggleConstructMode;
             InputManager.Instance.OnFireButtonPressed += Shoot;
 
         }
@@ -20,7 +19,6 @@ namespace GT.Game.SwarmControls
             InputManager.Instance.OnMovementAxisUpdate -= MoveToDirection;
             InputManager.Instance.OnRotationAxisUpdate -= RotateShip;
             InputManager.Instance.OnWorldSpacePointerPositionUpdate -= AimTo;
-            InputManager.Instance.OnConstructButtonDown -= ToggleConstructMode;
             InputManager.Instance.OnFireButtonPressed -= Shoot;
         }
 
@@ -41,7 +39,7 @@ namespace GT.Game.SwarmControls
             }
         }
 
-        private void ToggleConstructMode(bool toggle)
+        public override void ToggleConstructMode(bool toggle)
         {
             _isConsturtorMode = toggle;
         }

@@ -41,6 +41,9 @@ namespace GT.Game.SwarmControls
             float angularVelocity = angle * Time.deltaTime;
             _movementBehaviour.AddAngularVelocity(angularVelocity);
         }
+        public virtual void ToggleConstructMode(bool toggle)
+        {
+        }
 
         protected void TriggerOnTargetPositionChanged(Vector2 position) => OnTargetPositionChanged?.Invoke(position);
 
