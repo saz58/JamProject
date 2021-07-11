@@ -1,9 +1,8 @@
 using System;
-using System.Collections;
+using GT.Audio;
 using GT.Game.Modules.Animations;
 using GT.Game.Modules.Stats;
 using GT.Game.Swarms;
-using Pool;
 using UnityEngine;
 
 namespace GT.Game.Modules
@@ -66,8 +65,8 @@ namespace GT.Game.Modules
         {
             _onDestroy?.Invoke(this);
             RemoveEffectFromSwarm(_swarm);
-            GameApplication.Instance.gameAudio.PlaySfx(Audio.SoundFx.ModuleDestroy);
             OnDestroyInner();
+            GameApplication.Instance.gameAudio.PlaySfxOnce(SoundFx.ModuleDestroy);
         }
 
         public void ReceiveDamage(float damage)
