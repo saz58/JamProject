@@ -161,6 +161,30 @@ MonoBehaviour:
     m_SerializedLabels: []
     m_MainAsset: {fileID: 0}
     m_TargetAsset: {fileID: 0}
+  - m_GUID: e7565194bcc0877429548906e2a30497
+    m_Address: EnemyShellItem
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 916e509c2dae681448be8da2cd2863c9
+    m_Address: ModuleDestroy
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: ac92e71bc4b5d5b4d8bbe4ea374b676f
+    m_Address: BlasterHit
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: d6a89dff0e04a3648a65b00ecd3e5a46
+    m_Address: BlasterShoot
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 5c7eb5ba643188b4b8c72bf4a28eb7a9, type: 2}
   m_SchemaSet:
