@@ -44,7 +44,8 @@ namespace GT.Game.Enemy
 
         private EnemyConfiguration GetConfiguration()
         {
-            return EnemyConfiguration.GetDefault();
+            var type = Enemy.EnemyType.Walker;
+            return EnemyConfiguration.GetForType(type);
         }
 
         private int GetModulCount()

@@ -20,12 +20,55 @@ namespace GT.Game.Enemy
         {
             return new EnemyConfiguration()
             {
-                AttackblocksPersent = 0.25f,
-                ShieldBlockPersent = 0.25f,
-                SpeedBlockPersent = 0.25f,
+                AttackblocksPersent = 0.33f,
+                ShieldBlockPersent = 0.33f,
+                SpeedBlockPersent = 0.33f,
                 FullLevelChanse = 0.25f,
             };
         }
+
+        public static EnemyConfiguration GetForType(EnemyType type)
+        {       
+            switch (type)
+            {
+                case EnemyType.Runner:
+                    return new EnemyConfiguration()
+                    {
+                        AttackblocksPersent = 0.25f,
+                        ShieldBlockPersent = 0.05f,
+                        SpeedBlockPersent = 0.7f,
+                        FullLevelChanse = 0.25f,
+                    };
+
+                case EnemyType.Shooter:
+                    return new EnemyConfiguration()
+                    {
+                        AttackblocksPersent = 0.75f,
+                        ShieldBlockPersent = 0.15f,
+                        SpeedBlockPersent = 0.15f,
+                        FullLevelChanse = 0.25f,
+                    };
+
+                case EnemyType.Walker:
+                    return new EnemyConfiguration()
+                    {
+                        AttackblocksPersent = 0.4f,
+                        ShieldBlockPersent = 0.2f,
+                        SpeedBlockPersent = 0.4f,
+                        FullLevelChanse = 0.25f,
+                    };
+
+                default:
+                    return EnemyConfiguration.GetDefault();
+            }
+        }
+    }
+
+    public enum EnemyType
+    {
+        Walker,
+        Runner,
+        Shooter,
     }
 
     public static class RandomSwarmGenerator

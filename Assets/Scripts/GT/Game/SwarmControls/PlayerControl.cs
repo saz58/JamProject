@@ -4,21 +4,9 @@ namespace GT.Game.SwarmControls
 {
     public class PlayerControl : BaseControl
     {
-        [SerializeField] private Camera _coordsTransformCamera;
-
         private bool _isConsturtorMode = false;
 
-        private void Awake()
-        {
-            if (_coordsTransformCamera == null)
-            {
-                _coordsTransformCamera = Camera.main;
-            }
-
-            AddListeners();
-        }
-
-        private void AddListeners()
+        protected override void AddListeners()
         {
             InputManager.Instance.OnMovementAxisUpdate += MoveToDirection;
             InputManager.Instance.OnRotationAxisUpdate += RotateShip;
@@ -27,7 +15,7 @@ namespace GT.Game.SwarmControls
             InputManager.Instance.OnFireButtonPressed += Shoot;
 
         }
-        private void RemoveListeners()
+        protected override void RemoveListeners()
         {
             InputManager.Instance.OnMovementAxisUpdate -= MoveToDirection;
             InputManager.Instance.OnRotationAxisUpdate -= RotateShip;
@@ -36,7 +24,7 @@ namespace GT.Game.SwarmControls
             InputManager.Instance.OnFireButtonPressed -= Shoot;
         }
 
-        private void AimTo(Vector3 point)
+        protected override void AimTo(Vector3 point)
         {
             if (!_isConsturtorMode)
             {
@@ -45,12 +33,7 @@ namespace GT.Game.SwarmControls
             }
         }
 
-        private void ToggleConstructMode(bool toggle)
-        {
-            _isConsturtorMode = toggle;
-        }
-
-        private void Shoot()
+        protected override void Shoot()
         {
             if (!_isConsturtorMode)
             {
@@ -58,9 +41,9 @@ namespace GT.Game.SwarmControls
             }
         }
 
-        private void OnDestroy()
+        private void ToggleConstructMode(bool toggle)
         {
-            RemoveListeners();
+            _isConsturtorMode = toggle;
         }
     }
 }

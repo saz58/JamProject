@@ -2,6 +2,7 @@
 using GT.Game.Modules;
 using GT.Game.SwarmControls;
 using Pool;
+using Scene;
 using UnityEngine;
 
 namespace GT.Game.Swarms
@@ -39,10 +40,14 @@ namespace GT.Game.Swarms
             swarm.SetCoreModule((CoreModule)module);
 
             var movement = swarm.gameObject.AddComponent<EnemyMovementBehaviour>();
-            movement.Setup(CacheLoader.MovementSettings, swarm.GetComponent<Rigidbody2D>());
+            movement.Setup(CacheLoader.MovementEnemySettings, swarm.GetComponent<Rigidbody2D>());
+
+            var attackBehaviour = swarm.gameObject.AddComponent<EnemyAttackBehaviour>();
+            attackBehaviour.Setup(BattleScene.Player.Swarm);
 
             var control = swarm.gameObject.AddComponent<EnemyControl>();
             control.Setup(movement);
+            control.SetEnemyAttackBehaviour(attackBehaviour);
 
             swarm.Setup(control);
 

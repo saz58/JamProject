@@ -35,4 +35,15 @@ public class CacheLoader
             return _movementSettings;
         }
     }
+
+    private static MovementData _movementEnemySettings;
+    public static MovementData MovementEnemySettings
+    {
+        get
+        {
+            if (_movementSettings == null)
+                _movementSettings = Resources.Load<MovementData>("MovementEnemyData");
+            return _movementSettings;
+        }
+    }
 }

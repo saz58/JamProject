@@ -13,6 +13,8 @@ namespace Scene
         [SerializeField] private BackgroundController _backgroundController;
         [SerializeField] private EnemySpawner _enemySpawner;
 
+        public static PlayerController Player;
+
         private bool _init;
 
         private void Start()
@@ -37,12 +39,26 @@ namespace Scene
             _init = true;
             CacheLoader.Setup();
 
-            var player = SwarmFactory.CreatePlayer(transform.position);
-            var playerController = player.gameObject.AddComponent<PlayerController>();
+            var swarm = SwarmFactory.CreatePlayer(transform.position);
+            Player = swarm.gameObject.AddComponent<PlayerController>();
+            Player.Setup(swarm);
 
-            _cameraController.Setup(player.transform);
-            _enemySpawner.Setup(playerController);
+            _cameraController.Setup(Player.transform);
+            _enemySpawner.Setup(Player);
             _backgroundController.Setup(_cameraController);
         }
+
+        private void OnDestroy()
+        {
+            Player = null;
+        }
+
+        // TODO: do not remove this
+        //public void Update()
+        //{
+        //    if (!_init || !Application.isFocused)
+        //        return;
+        //}
+
     }
 }
