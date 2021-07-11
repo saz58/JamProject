@@ -59,7 +59,7 @@ namespace GT.Game.Enemy
                     };
 
                 default:
-                    return EnemyConfiguration.GetDefault();
+                    return GetDefault();
             }
         }
     }
@@ -73,9 +73,9 @@ namespace GT.Game.Enemy
 
     public static class RandomSwarmGenerator
     {
-        public static Swarm SpawnEnemy(Vector2 spawnPosition, EnemyConfiguration enemyConfiguration, int totalModulesCound)
+        public static Swarm SpawnEnemy(EnemyType type, Vector2 spawnPosition, EnemyConfiguration enemyConfiguration, int totalModulesCound)
         {
-            var enemy = SwarmFactory.CreateEnemy(spawnPosition);
+            var enemy = SwarmFactory.CreateEnemy(spawnPosition, type);
             GenerateBlocks(enemy, enemyConfiguration, totalModulesCound);
             return enemy;
         }

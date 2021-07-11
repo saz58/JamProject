@@ -1,4 +1,5 @@
 ﻿using GT.Data.Game;
+using GT.Game.Enemy;
 using GT.Game.Modules;
 using GT.Game.SwarmControls;
 using Pool;
@@ -34,8 +35,8 @@ namespace GT.Game.Swarms
 
             return swarm;
         }
-
-        public static Swarm CreateEnemy(Vector2 position)
+        
+        public static Swarm CreateEnemy(Vector2 position, EnemyType type)
         {
             var swarm = PoolManager.Get<Swarm>(nameof(Swarm));
             swarm.transform.position = position;
@@ -47,7 +48,7 @@ namespace GT.Game.Swarms
             movement.Setup(CacheLoader.MovementEnemySettings, swarm.GetComponent<Rigidbody2D>());
 
             var attackBehaviour = swarm.gameObject.AddComponent<EnemyAttackBehaviour>();
-            attackBehaviour.Setup(BattleScene.Player.Swarm);
+            attackBehaviour.Setup(swarm, BattleScene.Player.Swarm, ConfigurationHelper.Instance.GetAttackConfiguration(type));
 
             var control = swarm.gameObject.AddComponent<EnemyControl>();
             control.Setup(movement);

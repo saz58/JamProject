@@ -8,34 +8,45 @@ using System;
 
 public class EnemyAttackBehaviour : MonoBehaviour
 {
-    private Swarm _swarm;
+    private Swarm _player;
+    private Swarm _owner;
+    private EnemyAttackData _settings;
 
     public Action<Vector3> LookAt;
     public Action Shoot;
     public Action<float, float> Move;
     public Action<float> Rorate;
 
-    public void Setup(Swarm player)
+    public void Setup(Swarm owner, Swarm player, EnemyAttackData settings)
     {
-        _swarm = player;
+        _owner = owner;
+        _player = player;
+        _settings = settings;
     }
 
     public void Update()
     {
-        var distanceToPlayer = Vector2.Distance(_swarm.transform.position, transform.position);
-        if (distanceToPlayer > 10)
+        var distanceToPlayer = Vector2.Distance(_player.Center(), transform.position);
+        var playerMaxExtend = Mathf.Max(_player.GetBound().size.x, _player.GetBound().size.x);
+        var enemyMaxExtend = Mathf.Max(_owner.GetBound().size.x, _owner.GetBound().size.x);
+
+        var track = _settings.TrackDistance * UnityEngine.Random.Range(0, 1 + _settings.TrackDistance);
+        if (distanceToPlayer - playerMaxExtend - enemyMaxExtend > track)
             return;
 
-        LookAt?.Invoke( _swarm.transform.position);
+        LookAt?.Invoke(_player.Center());
 
-        if (distanceToPlayer < 4 && distanceToPlayer > 2)
+        var activation = _settings.ActivationDistance * UnityEngine.Random.Range(0, 1 + _settings.ActivationDistance);
+        if (distanceToPlayer - playerMaxExtend - enemyMaxExtend < activation && distanceToPlayer - playerMaxExtend - enemyMaxExtend > 1)
         {
-            var moveDirection = _swarm.transform.position - transform.position;
+            var moveDirection = _player.Center() - transform.position;
             moveDirection.Normalize();
             Move?.Invoke(moveDirection.x, moveDirection.y);
         }
 
-        if (distanceToPlayer < 3) // visible for camera 
+        var attack = _settings.AttackDistance * UnityEngine.Random.Range(0, 1 + _settings.AttackDistanceRandomRange);
+
+        if (distanceToPlayer - playerMaxExtend - enemyMaxExtend < attack) // visible for camera 
         {
             Shoot?.Invoke();
         }

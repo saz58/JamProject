@@ -1,4 +1,5 @@
-﻿using GT.Game.Swarms;
+﻿using CustomExtension;
+using GT.Game.Swarms;
 using UnityEngine;
 
 namespace GT.Game.Enemy
@@ -12,7 +13,8 @@ namespace GT.Game.Enemy
         [EditorButton]
         public void Test()
         {
-            RandomSwarmGenerator.SpawnEnemy(_userSwarm.Position, _configuration, _totalCount);
+            var type = EnumExts.RandomEnumValue<EnemyType>();
+            RandomSwarmGenerator.SpawnEnemy(type, _userSwarm.Position, _configuration, _totalCount);
         }
     }
 }

@@ -9,8 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b7ce2c6baf4a4404f881ec85f77f0e78, type: 3}
-  m_Name: EnemtSwarmFactory
+  m_Script: {fileID: 11500000, guid: 137336fc77df543b7811afc0f717c806, type: 3}
+  m_Name: EnemyAttackData
   m_EditorClassIdentifier: 
-  _moduleFactory: {fileID: 11400000, guid: d3af35073cd377742ab6e94197535264, type: 2}
-  _prefab: {fileID: 4576518442313370250, guid: 80284303c42e901409d25c02df2c3604, type: 3}
+  Type: 0
+  AttackDistance: 4
+  AttackDistanceRandomRange: 0.112
+  ActivationDistance: 10
+  ActivationDistanceRange: 0.134
+  TrackDistance: 15
+  TrackDistanceRange: 0.102

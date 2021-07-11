@@ -1683,6 +1683,7 @@ GameObject:
   - component: {fileID: 1237889385}
   - component: {fileID: 1237889384}
   - component: {fileID: 1237889386}
+  - component: {fileID: 1237889387}
   m_Layer: 0
   m_Name: BattleScene
   m_TagString: Untagged
@@ -1732,9 +1733,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _distanceFromPlayer: 5
-  _maxAmmount: 200
+  _maxAmmount: 50
   _minSpawnInterval: 2
   _startDelay: 5
+--- !u!114 &1237889387
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1237889383}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58b88939de4da4e81bd39c2eac059d76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AttackConfigs:
+  - {fileID: 11400000, guid: 41e4af495f8b246998e8e975422a86ea, type: 2}
+  - {fileID: 11400000, guid: 110a3c61186634abeb3e462f7e8039d3, type: 2}
+  - {fileID: 11400000, guid: 46aaf010e62404a539f449166f9e956a, type: 2}
 --- !u!1001 &1468546429
 PrefabInstance:
   m_ObjectHideFlags: 0

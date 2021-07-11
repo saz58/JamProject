@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using GT.Game.Connectors;
@@ -23,6 +24,8 @@ namespace GT.Game.Swarms
 
         public event Action<Vector2> OnTargetPositionChanged;
         public event Action OnFire;
+
+        public int ModuleCount => _allModules.Count;
 
         public void Setup(BaseControl control)
         {
@@ -69,6 +72,7 @@ namespace GT.Game.Swarms
             _coreModule.ConnectTo(this);
 
             UpdateConnectors(Vector2.zero);
+            StartCoroutine(UpdateBound());
         }
 
         public void AddModule(Vector2 position, BaseModule module)
@@ -79,6 +83,7 @@ namespace GT.Game.Swarms
             module.ConnectTo(this);
             UpdateConnectors(position);
             ToggleConstructMode(false);
+            StartCoroutine(UpdateBound());
         }
 
         public void RemoveModule(Vector2 position)
@@ -89,6 +94,7 @@ namespace GT.Game.Swarms
             }
 
             ProcessCascadeDestroy(position);
+            StartCoroutine(UpdateBound());
         }
 
         public void RemoveModule(BaseModule module)
@@ -242,17 +248,40 @@ namespace GT.Game.Swarms
             }
         }
 
-        public Bounds GetBound()
+        private Bounds _bounds = new Bounds();
+        private Vector3 _point;
+        private IEnumerator UpdateBound()
         {
-            Bounds bounds = new Bounds();
+            yield return new WaitForFixedUpdate();
+
+            int i = 0;
             foreach (var ms in _allModules)
             {
-                if(ms.Value.Collider)
+                if (ms.Value.Collider)
                 {
-                    bounds.Encapsulate(ms.Value.Collider.bounds);
+                    if (i == 0)
+                    {
+                        _bounds = ms.Value.Collider.bounds;
+                    } else
+                    {
+                        _bounds.Encapsulate(ms.Value.Collider.bounds);
+                    }
                 }
+                i++;
             }
-            return bounds;
+
+            var size = _bounds.size;
+            size.z = 1;
+            _bounds.size = size;
+            _point = transform.position;
+        }
+
+
+        public Bounds GetBound() => _bounds;
+
+        public Vector3 Center() {
+            var v = _bounds.center + (transform.position - _point);
+            return v;
         }
     }
 }

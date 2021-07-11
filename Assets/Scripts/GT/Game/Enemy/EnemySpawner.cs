@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using CustomExtension;
 using GT.Game.Swarms;
 using UnityEngine;
 
@@ -30,7 +31,8 @@ namespace GT.Game.Enemy
                 return;
 
             var spawnPosition = GetPosition();
-            var enemy = RandomSwarmGenerator.SpawnEnemy(spawnPosition, GetConfiguration(), GetModulCount());
+            var type = EnumExts.RandomEnumValue<EnemyType>();
+            var enemy = RandomSwarmGenerator.SpawnEnemy(type, spawnPosition, GetConfiguration(type), GetModulCount());
             CorrectPositionOnScreen(enemy);
             _allEnemy.Add(enemy);
         }
@@ -48,23 +50,25 @@ namespace GT.Game.Enemy
         public void CorrectPositionOnScreen(Swarm enemy)
         {
             var bound = enemy.GetBound();
+            bound.center = enemy.Center();
             if(_cameraController.IsInCameraView(bound))
             {
                 var direction = enemy.transform.position - _cameraController.Camera.transform.position;
+                direction.z = 0;
                 direction.Normalize();
-                enemy.transform.position += direction * Mathf.Max(bound.size.x, bound.size.y);
+                var camBound = _cameraController.Bound;
+                enemy.transform.position += direction * (Mathf.Max(bound.size.x, bound.size.y) + Mathf.Max(camBound.size.x, camBound.size.y));
             }
         }
 
-        private EnemyConfiguration GetConfiguration()
+        private EnemyConfiguration GetConfiguration(EnemyType type)
         {
-            var type = EnemyType.Walker;
             return EnemyConfiguration.GetForType(type);
         }
 
         private int GetModulCount()
         {
-            return Random.Range(2, 6);
+            return (int)(_playerController.Swarm.ModuleCount * Random.Range(0.3f, 1.3f)) + 1;
         }
 
     }
