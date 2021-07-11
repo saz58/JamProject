@@ -53,6 +53,8 @@ namespace GT.Data.Game
                 _types = EnumExts.GetCastValues<ModuleType>().ToList();
                 _types.Remove(0); // remove core;
 
+                var id = GetFreeId();
+
                 if (_firstSpawnGuns >= 0)
                 {
                     _firstSpawnGuns --;
@@ -62,16 +64,26 @@ namespace GT.Data.Game
                 switch (_types.PickRandom())
                 {
                     case ModuleType.Attack:
-                        return new AttackModuleData(_modulesData.Count);
+                        return new AttackModuleData(id);
                     case ModuleType.Shield:
-                        return new ShieldModuleData(_modulesData.Count);
+                        return new ShieldModuleData(id);
                     case ModuleType.Speed:
-                        return new SpeedModuleData(_modulesData.Count);
+                        return new SpeedModuleData(id);
                 }
-                return new SpeedModuleData(_modulesData.Count);
+                return new SpeedModuleData(id);
+            }
+
+            int GetFreeId()
+            {
+                var id = _modulesData.Count;
+                while (_modulesData.ContainsKey(id))
+                {
+                    id++;
+                }
+
+                return id;
             }
         }
-        
 
         public static void CheckModulesPosition(Vector2 pos)
         {

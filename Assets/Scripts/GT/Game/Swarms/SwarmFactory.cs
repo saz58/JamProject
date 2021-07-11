@@ -19,7 +19,7 @@ namespace GT.Game.Swarms
             swarm.SetCoreModule((CoreModule)module);
 
             var movement = swarm.gameObject.AddComponent<MovementBehaviour>();
-            movement.Setup(CacheLoader.MovementSettings, swarm.GetComponent<Rigidbody2D>());
+            movement.Setup(CacheLoader.MovementSettings.Clone(), swarm.GetComponent<Rigidbody2D>());
 
             var control = swarm.gameObject.AddComponent<PlayerControl>();
             var modulepiker = swarm.gameObject.AddComponent<ModulePicker>();

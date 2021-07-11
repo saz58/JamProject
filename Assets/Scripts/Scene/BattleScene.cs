@@ -18,16 +18,27 @@ namespace Scene
 
         private bool _init;
 
+        private static bool _startFightImmidiatelly;
+
         private void Start()
         {
             _cameraController.RegisterOverlayCamera();
             Debug.Log("[BattleScene] Start");
 
-            UIScreenController.Instance.Create<StartScreen>(screen =>
+            if (_startFightImmidiatelly)
             {
                 UIScreenController.Instance.HideLoadingScreen();
-                screen.Init(StartGame);
-            });
+                StartGame();
+            }
+            else
+            {
+                UIScreenController.Instance.Create<StartScreen>(screen =>
+                {
+                    UIScreenController.Instance.HideLoadingScreen();
+                    screen.Init(StartGame);
+                });
+            }
+
 
             void StartGame()
             {
@@ -59,10 +70,26 @@ namespace Scene
             var swarm = SwarmFactory.CreatePlayer(transform.position);
             Player = swarm.gameObject.AddComponent<PlayerController>();
             Player.Setup(swarm);
+            swarm.OnDestroied += OnPlayerSwarmDestroied;
 
             _cameraController.Setup(Player.transform);
             _enemySpawner.Setup(Player, _cameraController);
             _backgroundController.Setup(_cameraController);
+        }
+
+        private void OnPlayerSwarmDestroied(Swarm swarm)
+        {
+            UIScreenController.Instance.Create<GameOverScreen>(screen =>
+            {
+                screen.Init(ScoreManager.TotalScoresCount);
+                screen.Open(() =>
+                {
+                    _startFightImmidiatelly = true;
+                    UIScreenController.Instance.GetLoadingScreen(null);
+                    SceneLoader.GoTo(SceneId);
+
+                });
+            });
         }
 
         private void OnDestroy()

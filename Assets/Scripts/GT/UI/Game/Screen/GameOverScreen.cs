@@ -1,5 +1,6 @@
 using System;
 using CustomExtension;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,12 +10,17 @@ namespace GT.UI.Game.Screen
     {
         [SerializeField] private Image splashImg = default;
         [SerializeField] private Button btn = default;
+        [SerializeField] private TextMeshProUGUI scoreLabel = default;
 
         private void Awake()
         {
             splashImg.SetAlpha(0);
         }
 
+        public void Init(int scores)
+        {
+            scoreLabel.text = scores.ToString();
+        }
 
         public override void Open(Action onOpen)
         {
