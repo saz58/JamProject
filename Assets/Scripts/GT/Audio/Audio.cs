@@ -26,6 +26,7 @@ namespace GT.Audio
         {
             Debug.Log(":: Init Audio");
             _sfxAudioSources = new List<AudioSource>();
+            PreCacheSfx();
         }
 
         private void PreCacheSfx()
