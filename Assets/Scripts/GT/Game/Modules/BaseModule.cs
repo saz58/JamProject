@@ -66,12 +66,14 @@ namespace GT.Game.Modules
         {
             _onDestroy?.Invoke(this);
             RemoveEffectFromSwarm(_swarm);
+            GameApplication.Instance.gameAudio.PlaySfx(Audio.SoundFx.ModuleDestroy);
             OnDestroyInner();
         }
 
         public void ReceiveDamage(float damage)
         {
             Stats.ReceiveDamage(damage);
+            GameApplication.Instance.gameAudio.PlaySfx(Audio.SoundFx.BlasterHit);
         }
 
         protected virtual void AddEffectToSwarm(Swarm swarm) { }
