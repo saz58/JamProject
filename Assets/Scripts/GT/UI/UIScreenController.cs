@@ -116,7 +116,7 @@ namespace GT.UI
             var key = typeof(T).Name;
             foreach (var kv in _screens)
             {
-                if (kv.GetType().Name == key)
+                if (kv.Key == key)
                     return kv.Value;
             }
 
@@ -128,7 +128,7 @@ namespace GT.UI
             var key = typeof(T).Name;
             foreach (var kv in _screens)
             {
-                if (kv.GetType().Name == key)
+                if (kv.Key == key)
                     kv.Value.Close(null);
             }
         }

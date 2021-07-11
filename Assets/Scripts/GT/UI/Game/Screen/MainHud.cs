@@ -32,6 +32,7 @@ namespace GT.UI.Game.Screen
         {
             modulesList.Clear();
             ScoreManager.OnScoreChanged -= OnScoresUpdated;
+            Destroy(gameObject);
         }
 
         private void OnScoresUpdated(int newScore)

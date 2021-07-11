@@ -4,6 +4,7 @@ using System.Linq;
 using CustomExtension;
 using GT.Game;
 using GT.Game.Modules;
+using Pool;
 using UnityEngine;
 
 namespace GT.Data.Game
@@ -83,6 +84,20 @@ namespace GT.Data.Game
 
                 return id;
             }
+        }
+
+        public static void Clear()
+        {
+            foreach (var module in _pickableModules)
+            {
+                if (module != null)
+                {
+                    UnityEngine.Object.Destroy(module.gameObject);
+                }
+            }
+
+            _pickableModules.Clear();
+            _modulesData.Clear();
         }
 
         public static void CheckModulesPosition(Vector2 pos)

@@ -32,7 +32,7 @@ namespace GT.UI.Game.Component
                 content, item =>
                 {
                     item.Init(module.Data, GetIcon(module.Data.Type), Selection);
-                    _items.Add(module.Data.Id, item);
+                    _items[module.Data.Id] =  item;
                 }));
         }
 
@@ -78,7 +78,7 @@ namespace GT.UI.Game.Component
         public void Clear()
         {
             foreach (var moduleItem in _items)
-                Destroy(moduleItem.Value);
+                Destroy(moduleItem.Value.gameObject);
 
             _items.Clear();
         }

@@ -1,3 +1,4 @@
+using GT.Data.Game;
 using GT.Game;
 using GT.Game.Enemy;
 using GT.Game.Modules;
@@ -63,7 +64,8 @@ namespace Scene
             Debug.Log("[BattleScene] SetupScene");
 
             ScoreManager.Reset();
-            
+            DataHandler.Clear();
+
             AddressableHandler.Instance.OnAllLoaded -= SetupScene;
             _init = true;
             CacheLoader.Setup();
@@ -89,6 +91,7 @@ namespace Scene
                 {
                     _startFightImmidiatelly = true;
                     UIScreenController.Instance.GetLoadingScreen(null);
+                    UIScreenController.Instance.DestroyScreen<MainHud>();
                     SceneLoader.GoTo(SceneId);
 
                 });
