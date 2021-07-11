@@ -130,7 +130,7 @@ namespace GT.Audio
                 Debug.LogError($"Audio address: {soundFx} don't exists.");
         }
 
-        private void PlayMusic(AudioClip audioClip, float volume = -1)
+        public void PlayMusic(AudioClip audioClip, float volume = -1)
         {
             if (audioListener == false)
             {

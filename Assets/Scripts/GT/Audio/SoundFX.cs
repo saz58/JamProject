@@ -7,6 +7,7 @@ namespace GT.Audio
         explosionNear,
         ModuleDestroy,
         BlasterShoot,
-        BlasterHit
+        BlasterHit,
+        Music
     }
 }

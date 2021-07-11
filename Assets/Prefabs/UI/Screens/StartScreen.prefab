@@ -56,6 +56,7 @@ MonoBehaviour:
   skipBtn: {fileID: 2946729610822384963}
   splashImg: {fileID: 2946729610503427980}
   tutorial: {fileID: 2946729609077351299}
+  _backgorundMusic: {fileID: 8300000, guid: 97646357fca21e64aba82c79dc57f015, type: 3}
 --- !u!1 &2946729609077351297
 GameObject:
   m_ObjectHideFlags: 0
@@ -223,7 +224,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 49.2
+  m_fontSize: 41.9
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1

@@ -11,7 +11,12 @@ namespace GT.UI.Game.Screen
         [SerializeField] private Button skipBtn = default;
         [SerializeField] private Image splashImg = default;
         [SerializeField] private Image tutorial = default;
+        [SerializeField] private AudioClip _backgorundMusic;
+
         private const string TutorialDisplayed = "tutorial";
+
+        private static bool _isBackgroundMusicStarted = false;
+
         private void Awake()
         {
             // splashImg.SetAlpha(0);
@@ -38,6 +43,11 @@ namespace GT.UI.Game.Screen
                     startBtnAction?.Invoke();
                     StartCoroutine(startBtn.transform.Scale(Vector3.zero, 0.1F));
                     StartCoroutine(splashImg.Fade(0, 0.4F));
+
+                    if (!_isBackgroundMusicStarted)
+                    {
+                        GameApplication.Instance.gameAudio.PlayMusic(_backgorundMusic, 0.1f);
+                    }
                 });
             }
             else
