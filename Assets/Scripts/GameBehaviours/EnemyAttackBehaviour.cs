@@ -5,6 +5,7 @@ using GT.Game.Modules;
 using GT.Game.SwarmControls;
 using GT.Game.Swarms;
 using System;
+using Scene;
 
 public class EnemyAttackBehaviour : MonoBehaviour
 {
@@ -26,6 +27,11 @@ public class EnemyAttackBehaviour : MonoBehaviour
 
     public void Update()
     {
+        if(!BattleScene.Playing)
+        {
+            return;
+        }
+
         var distanceToPlayer = Vector2.Distance(_player.Center(), transform.position);
         var playerMaxExtend = Mathf.Max(_player.GetBound().size.x, _player.GetBound().size.x);
         var enemyMaxExtend = Mathf.Max(_owner.GetBound().size.x, _owner.GetBound().size.x);

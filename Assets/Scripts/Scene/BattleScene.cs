@@ -58,7 +58,7 @@ namespace Scene
                 });
             }
         }
-
+        public static bool Playing;
         private void SetupScene()
         {
             Debug.Log("[BattleScene] SetupScene");
@@ -80,10 +80,12 @@ namespace Scene
             _cameraController.Setup(Player.transform);
             _enemySpawner.Setup(Player, _cameraController);
             _backgroundController.Setup(_cameraController);
+            Playing = true;
         }
 
         private void OnPlayerSwarmDestroied(Swarm swarm)
         {
+            Playing = false;
             UIScreenController.Instance.Create<GameOverScreen>(screen =>
             {
                 screen.Init(ScoreManager.TotalScoresCount);
@@ -93,7 +95,7 @@ namespace Scene
                     UIScreenController.Instance.GetLoadingScreen(null);
                     UIScreenController.Instance.DestroyScreen<MainHud>();
                     SceneLoader.GoTo(SceneId);
-
+                    Playing = false;
                 });
             });
         }
