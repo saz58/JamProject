@@ -66,6 +66,6 @@ public class FireBehaviour : MonoBehaviour
         }
 
         shell.Shoot(_speed + additioalSpeed, _lifeTime, _damage, _shellRaycasLayerMask.value);
-        GameApplication.Instance.gameAudio.PlaySfx(SoundFx.BlasterShoot);
+        GameApplication.Instance.gameAudio.PlaySfx(SoundFx.BlasterShoot, 0.1F);
     }
 }

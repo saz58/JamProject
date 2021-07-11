@@ -46,7 +46,7 @@ namespace GT.UI.Game.Screen
 
                     if (!_isBackgroundMusicStarted)
                     {
-                        GameApplication.Instance.gameAudio.PlayMusic(_backgorundMusic, 0.1f);
+                        GameApplication.Instance.gameAudio.PlayMusic(_backgorundMusic, 0.24f);
                     }
                 });
             }
