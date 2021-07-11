@@ -5,12 +5,13 @@ using System.Linq;
 using GT.Game.Connectors;
 using GT.Game.Modules;
 using GT.Game.SwarmControls;
+using Pool;
 using UnityEngine;
 
 namespace GT.Game.Swarms
 {
 
-    public class Swarm : MonoBehaviour
+    public class Swarm : MonoBehaviour, IPoolObject
     {
         private BaseControl _baseControl;
 
@@ -176,6 +177,9 @@ namespace GT.Game.Swarms
                 module.Destroy();
             }
 
+            _allConnectors.Clear();
+            _allModules.Clear();
+
             OnDestroied?.Invoke(this);
         }
 
@@ -230,6 +234,17 @@ namespace GT.Game.Swarms
             {
                 UpdateConnectors(key);
             }
+        }
+
+        public void OnGetWithPool()
+        {
+        }
+
+        public void OnReturnToPool()
+        {
+            OnDestroied = null;
+            OnTargetPositionChanged = null;
+            OnFire = null;
         }
 
         // Helper class to compare floats with lower accuracy

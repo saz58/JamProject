@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using CustomExtension;
+using GT.Game.Modules;
 using GT.Game.Swarms;
 using UnityEngine;
 
@@ -33,6 +34,7 @@ namespace GT.Game.Enemy
             var spawnPosition = GetPosition();
             var type = EnumExts.RandomEnumValue<EnemyType>();
             var enemy = RandomSwarmGenerator.SpawnEnemy(type, spawnPosition, GetConfiguration(type), GetModulCount());
+            enemy.OnDestroied += SpawnItemsOnDestroy;
             CorrectPositionOnScreen(enemy);
             AllEnemy.Add(enemy);
         }
@@ -69,6 +71,12 @@ namespace GT.Game.Enemy
         private EnemyConfiguration GetConfiguration(EnemyType type)
         {
             return EnemyConfiguration.GetForType(type);
+        }
+
+        private static void SpawnItemsOnDestroy(Swarm swarm)
+        {
+            RandomPickableModuleSpawner.SpawnGroupModules(new Vector2(swarm.transform.position.x, swarm.transform.position.y), radius: 1);
+            swarm.OnDestroied -= SpawnItemsOnDestroy;
         }
 
         private int GetModulCount()

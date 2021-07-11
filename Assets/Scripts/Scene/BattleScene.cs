@@ -1,5 +1,6 @@
 using GT.Game;
 using GT.Game.Enemy;
+using GT.Game.Modules;
 using GT.Game.Swarms;
 using GT.UI;
 using GT.UI.Game.Screen;
@@ -71,6 +72,8 @@ namespace Scene
             Player = swarm.gameObject.AddComponent<PlayerController>();
             Player.Setup(swarm);
             swarm.OnDestroied += OnPlayerSwarmDestroied;
+
+            RandomPickableModuleSpawner.SpawnGroupModules(new Vector2(swarm.transform.position.x + 4, swarm.transform.position.y), 5, 4);
 
             _cameraController.Setup(Player.transform);
             _enemySpawner.Setup(Player, _cameraController);
