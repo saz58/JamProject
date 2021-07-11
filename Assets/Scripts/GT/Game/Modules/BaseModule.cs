@@ -73,7 +73,7 @@ namespace GT.Game.Modules
         public void ReceiveDamage(float damage)
         {
             Stats.ReceiveDamage(damage);
-            GameApplication.Instance.gameAudio.PlaySfx(Audio.SoundFx.BlasterHit);
+            GameApplication.Instance.gameAudio.PlaySfxOnce(Audio.SoundFx.BlasterHit);
         }
 
         protected virtual void AddEffectToSwarm(Swarm swarm) { }
