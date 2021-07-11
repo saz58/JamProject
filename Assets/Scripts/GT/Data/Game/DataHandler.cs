@@ -66,9 +66,9 @@ namespace GT.Data.Game
                     case ModuleType.Shield:
                         return new ShieldModuleData(_modulesData.Count);
                     case ModuleType.Speed:
-                        return new SpeedModuleData(_modulesData.Count, 0.2f, 1f, 2, 5);
+                        return new SpeedModuleData(_modulesData.Count);
                 }
-                return new SpeedModuleData(_modulesData.Count, 0.2f, 1f, 2, 5);
+                return new SpeedModuleData(_modulesData.Count);
             }
         }
         

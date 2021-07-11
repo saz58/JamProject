@@ -13,10 +13,14 @@ namespace GT.Data.Game
 
         public abstract ModuleStats ToStats();
 
-        public ModuleData(int id)
+        public ModuleData(int id, float health)
         {
             Id = id;
-            MaxHealth = CurrentHealth = 20;
+            MaxHealth = CurrentHealth = health;
+        }
+
+        public ModuleData(int id) : this (id, 20)
+        {
         }
     }
 }

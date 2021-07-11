@@ -23,6 +23,11 @@ public class FireBehaviour : MonoBehaviour
         _inverceDispersionAngle = _dispersionAngle * (-1f);
     }
 
+    public void ChangeDamage(float damage)
+    {
+        _damage = damage;
+    }
+
     public void Fire(Vector2 shipVelocity)
     {
         if (Time.time - _fireTime < _coolDown)

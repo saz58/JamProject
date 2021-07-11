@@ -18,6 +18,7 @@ namespace GT.Game.Modules
             if (!swarm)
                 return;
 
+            _fireBehaviour.ChangeDamage(Stats.Damage);
             swarm.OnTargetPositionChanged += AimTo;
             swarm.OnFire += Fire;
             _rigidbody = swarm.GetComponent<Rigidbody2D>();

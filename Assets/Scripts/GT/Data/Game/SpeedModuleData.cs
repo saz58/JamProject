@@ -1,4 +1,5 @@
-﻿using GT.Game.Modules;
+﻿using GT.Game;
+using GT.Game.Modules;
 using GT.Game.Modules.Stats;
 
 namespace GT.Data.Game
@@ -12,13 +13,21 @@ namespace GT.Data.Game
 
         public override ModuleType Type => ModuleType.Speed;
 
+        public SpeedModuleData(int id)
+            : this(id,
+                  GameConsts.LinearSpeedIncrease,
+                  GameConsts.AngularSpeedIncrease,
+                  GameConsts.LinearVelocityIncrease,
+                  GameConsts.AngularVelocityIncrease)
+        { }
+
         public SpeedModuleData(
             int id,
             float linearSpeedIncrease,
             float angularSpeedIncrease,
             float linearVelocityIncrease,
             float angularVelocityIncrease)
-            : base(id)
+            : base(id, GameConsts.SpeedModuleHealth)
         {
             LinearSpeedIncrease = linearSpeedIncrease;
             AngularSpeedIncrease = angularSpeedIncrease;

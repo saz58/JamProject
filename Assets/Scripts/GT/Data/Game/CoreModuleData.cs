@@ -1,4 +1,5 @@
-﻿using GT.Game.Modules;
+﻿using GT.Game;
+using GT.Game.Modules;
 using GT.Game.Modules.Stats;
 
 namespace GT.Data.Game
@@ -7,7 +8,7 @@ namespace GT.Data.Game
     {
         public override ModuleType Type => ModuleType.Core;
 
-        public CoreModuleData(int id) : base(id)
+        public CoreModuleData(int id) : base(id, GameConsts.CoreModuleHealth)
         {
         }
 
