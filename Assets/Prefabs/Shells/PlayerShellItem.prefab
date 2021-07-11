@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 073a0f8e819b3eb478ef50820b5d8b2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _baseShellItem: {fileID: 0}
+  _shellPoolKey: 0
   _shellRaycastOrigin: {fileID: 5443917768055656141}
 --- !u!1 &7061581904500472590
 GameObject:
@@ -116,8 +116,9 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
+  m_SortingOrder: 5
+  m_Sprite: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847,
+    type: 3}
   m_Color: {r: 0, g: 0.735849, b: 0.25808796, a: 1}
   m_FlipX: 0
   m_FlipY: 0
