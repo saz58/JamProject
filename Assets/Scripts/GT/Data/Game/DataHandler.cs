@@ -88,6 +88,8 @@ namespace GT.Data.Game
 
         public static void Clear()
         {
+            _firstSpawnGuns = 3;
+
             foreach (var module in _pickableModules)
             {
                 if (module != null)
