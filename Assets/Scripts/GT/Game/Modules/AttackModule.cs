@@ -9,6 +9,8 @@ namespace GT.Game.Modules
         [SerializeField] private AimBehaviour _aimBehaviour;
         [SerializeField] private FireBehaviour _fireBehaviour;
 
+        private Rigidbody2D _rigidbody;
+
         public new AttackModuleStats Stats => (AttackModuleStats)base.Stats;
 
         protected override void AddEffectToSwarm(Swarm swarm)
@@ -18,6 +20,7 @@ namespace GT.Game.Modules
 
             swarm.OnTargetPositionChanged += AimTo;
             swarm.OnFire += Fire;
+            _rigidbody = swarm.GetComponent<Rigidbody2D>();
         }
 
         protected override void RemoveEffectFromSwarm(Swarm swarm)
@@ -36,7 +39,7 @@ namespace GT.Game.Modules
 
         private void Fire()
         {
-            _fireBehaviour.Fire();
+            _fireBehaviour.Fire(_rigidbody.velocity);
         }
     }
 }

@@ -23,7 +23,7 @@ public class FireBehaviour : MonoBehaviour
         _inverceDispersionAngle = _dispersionAngle * (-1f);
     }
 
-    public void Fire()
+    public void Fire(Vector2 shipVelocity)
     {
         if (Time.time - _fireTime < _coolDown)
         {
@@ -31,10 +31,21 @@ public class FireBehaviour : MonoBehaviour
         }
 
         _fireTime = Time.time;
+        
         var shell = PoolManager.Get<Shell>(_shellPoolKey.ToString());
         shell.transform.position = _shellSpawnPoint.position;
         shell.transform.rotation = _shellSpawnPoint.rotation;
         shell.transform.Rotate(Vector3.forward, Random.Range(_inverceDispersionAngle, _dispersionAngle));
-        shell.Shoot(_speed, _lifeTime, _damage, _shellRaycasLayerMask.value);
+
+        float additioalSpeed = 0f;
+        var angleeToShipVelocity = Vector3.Angle(shipVelocity.normalized, shell.transform.forward);
+         
+        if (angleeToShipVelocity < 90)
+        {
+            additioalSpeed = Mathf.Cos(angleeToShipVelocity * Mathf.Deg2Rad) * shipVelocity.magnitude;
+            Debug.Log($"[FireBehaviour] angleeToShipVelocity = {angleeToShipVelocity}; shipVelocity = {shipVelocity}; shipVelocity.magnitude = {shipVelocity.magnitude}; additioalSpeed = {additioalSpeed}");
+        }    
+
+        shell.Shoot(_speed + additioalSpeed, _lifeTime, _damage, _shellRaycasLayerMask.value);
     }
 }
