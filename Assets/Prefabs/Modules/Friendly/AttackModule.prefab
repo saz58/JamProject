@@ -138,7 +138,7 @@ MonoBehaviour:
   _shellSpawnPoint: {fileID: 7611772044451234128}
   _dispersionAngle: 5
   _coolDown: 0.5
-  _speed: 2
+  _speed: 5
   _lifeTime: 50
   _damage: 10
   _shellRaycasLayerMask:

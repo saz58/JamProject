@@ -137,14 +137,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _shellSpawnPoint: {fileID: 7611772044451234128}
   _dispersionAngle: 5
-  _coolDown: 0.5
+  _coolDown: 1
   _speed: 2
   _lifeTime: 50
   _damage: 1
   _shellRaycasLayerMask:
     serializedVersion: 2
     m_Bits: 118
-  _shellPoolKey: 0
+  _shellPoolKey: 1
 --- !u!114 &3768265466938763778
 MonoBehaviour:
   m_ObjectHideFlags: 0
