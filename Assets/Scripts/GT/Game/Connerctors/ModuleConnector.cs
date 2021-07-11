@@ -9,6 +9,7 @@ namespace GT.Game.Connectors
     public class ModuleConnector : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler, IPoolObject
     {
         [SerializeField] private SpriteRenderer spriteRenderer = default;
+        [SerializeField] private Collider2D collider = default;
         private Color32 _spriteColor;
         private SwarmConstructor constructor = default;
         private Vector2 _position;
@@ -33,6 +34,7 @@ namespace GT.Game.Connectors
         public void Highlight(bool toggle)
         {
             spriteRenderer.enabled = toggle;
+            collider.enabled = toggle;
         }
 
         public void OnPointerClick(PointerEventData eventData)

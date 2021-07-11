@@ -13,9 +13,13 @@ namespace GT.Game.Modules
             return pickableModule;
         }
 
+        /// <summary>
+        /// Spawn group after destroying enemy.
+        /// </summary>
+        /// <param name="centerPos">last enemy position</param>
         public static void SpawnGroupModules(Vector2 centerPos)
         {
-            var count = Random.Range(0, 3);
+            var count = Random.Range(1, 3);
             for (int i = 0; i < count; i++)
             {
                 var m = SpawnPickableModule(centerPos);

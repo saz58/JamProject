@@ -13,16 +13,12 @@ namespace GT.UI.Game.Item
         [SerializeField] private Color32 hlNormal = default;
         [SerializeField] private Color32 hlActive = default;
         [SerializeField] private Color32 bgEnter = default;
-        [SerializeField] private Color32 bgExit = default;
         
         [SerializeField] private Image icon = default;
         [SerializeField] private Image highlight = default;
-        [SerializeField] private Image bg = default;
 
         private Action<int> _onSelect;
         private ModuleData _data;
-        public ModuleData Data => _data;
-
         public void Init(ModuleData data, Sprite moduleIcon, Action<int> selection)
         {
             _data = data;
@@ -46,12 +42,12 @@ namespace GT.UI.Game.Item
 
         public void OnPointerEnter(PointerEventData eventData)
         {
-            bg.color = bgEnter;
+            icon.color = bgEnter;
         }
 
         public void OnPointerExit(PointerEventData eventData)
         {
-            bg.color = bgExit;
+            icon.color = Color.white;
         }
     }
 }

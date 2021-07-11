@@ -433,10 +433,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI_ModuleContainer
       objectReference: {fileID: 0}
-    - target: {fileID: 6627688560364545450, guid: 1cfe3de93d94a378da56cd9d350c19a8, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1cfe3de93d94a378da56cd9d350c19a8, type: 3}
 --- !u!224 &1304249238572847849 stripped
