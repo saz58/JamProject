@@ -100,7 +100,7 @@ namespace GT.Game.Enemy
 
         private static void SpawnItemsOnDestroy(Swarm swarm)
         {
-            RandomPickableModuleSpawner.SpawnGroupModules(new Vector2(swarm.transform.position.x, swarm.transform.position.y), radius: 1);
+            RandomPickableModuleSpawner.SpawnGroupModulesByRadius(new Vector2(swarm.transform.position.x, swarm.transform.position.y), radius: 1);
             swarm.OnDestroied -= SpawnItemsOnDestroy;
         }
 

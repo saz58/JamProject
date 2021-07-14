@@ -18,7 +18,7 @@ namespace TestV
         [EditorButton]
         private void TestA()
         {
-            RandomPickableModuleSpawner.SpawnGroupModules(Vector2.zero);
+            RandomPickableModuleSpawner.SpawnGroupModulesByRadius(Vector2.zero);
 
         }
     }

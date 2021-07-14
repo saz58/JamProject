@@ -75,7 +75,8 @@ namespace Scene
             Player.Setup(swarm);
             swarm.OnDestroied += OnPlayerSwarmDestroied;
 
-            RandomPickableModuleSpawner.SpawnGroupModules(new Vector2(swarm.transform.position.x + 4, swarm.transform.position.y), 5, 4);
+            RandomPickableModuleSpawner.Init(swarm);
+            RandomPickableModuleSpawner.SpawnGroupModulesByRadius(new Vector2(swarm.transform.position.x + 4, swarm.transform.position.y), 5, 4);
 
             _cameraController.Setup(Player.transform);
             _enemySpawner.Setup(Player, _cameraController);

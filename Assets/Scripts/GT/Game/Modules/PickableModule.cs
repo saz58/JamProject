@@ -25,6 +25,8 @@ namespace GT.Game
         }
         public void AnimateDisplay(Vector2 targetPos)
         {
+            _transform.localScale = Vector3.zero;
+            
             var t = Random.Range(0.1F, 0.4F);
             StartCoroutine(_transform.EaseMove(targetPos, t,
                 ease: EasingFunction.Ease.EaseOutCubic));
@@ -35,7 +37,6 @@ namespace GT.Game
         public void OnGetWithPool()
         {
             gameObject.SetActive(true);
-            _transform.localScale = Vector3.zero;
             _data = DataHandler.AddInGameModule(this);
             SetSprite();
             void SetSprite()

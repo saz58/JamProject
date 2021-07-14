@@ -1,7 +1,6 @@
 ﻿using GT;
 using GT.Asset;
 using GT.UI;
-using GT.UI.Game.Screen;
 using UnityEngine;
 
 public class GameApplication : MonoBehaviour
